@@ -1,198 +1,449 @@
 # Shipment ETA Prediction System
 
-Receivers plan trucks, warehouse slots and staffing around a booked delivery time. A late sailing can shift that schedule, while faster port handling or customs clearance can recover lost time. This application replays 50 held-out synthetic shipments and revises their final inland ETA as tracking reports arrive. All times are UTC.
+A shipment tracking and delivery forecasting application that estimates final arrival times, monitors delays, and explains how changes at different logistics stages affect the expected delivery time.
 
-The four tabs connect fleet monitoring (**Dashboard**), individual forecasts and explanations (**Shipments**), stage-wise changes, routes and congestion (**Delay Analysis**), and saved validation and test results (**Model Performance**). Each forecast reports a signed delay and a qualitative risk band. Replay keeps future events hidden and identifies gaps in the tracking history.
+The project combines shipment tracking data, operational delay calculations, machine learning models, and an interactive dashboard. It focuses on understanding how delays develop during transportation and how delivery estimates change when new tracking information becomes available.
 
-## Project layout
+## Overview
+
+A shipment passes through several stages before reaching its final destination. Delays at departure, port arrival, cargo handling, customs clearance, or inland transportation can affect the final delivery time.
+
+A delay at one stage does not always result in an equally late delivery. Some time may be recovered during later operations, while congestion or additional processing may increase the delay.
+
+This system tracks those changes and updates the expected final delivery time using the information available at each reported milestone.
+
+### Main capabilities
+
+- Predict the final estimated arrival time of a shipment.
+- Calculate expected delay in hours.
+- Classify predicted delay into low, moderate, or high categories.
+- Track accumulated delay across shipment milestones.
+- Identify additional delay and recovered time.
+- Explain important operational factors behind the forecast.
+- Handle missing intermediate tracking reports.
+- Compare prediction methods using validation and test results.
+- Explore route variation, congestion, and processing behavior.
+- Replay historical shipment journeys without revealing future information.
+
+## Technology Stack
+
+| Component | Technology |
+|---|---|
+| Programming language | Python 3.11 |
+| Backend | FastAPI, Pydantic |
+| Data processing | pandas, NumPy |
+| Machine learning | scikit-learn, XGBoost, CatBoost |
+| Model optimization | Optuna |
+| Model storage | joblib |
+| Frontend | React, TypeScript, Vite |
+| Styling | Tailwind CSS, custom CSS |
+| Charts | Recharts |
+| Animations | Framer Motion |
+| Testing | pytest, Vitest, Playwright |
+
+The application uses CSV files and saved model artifacts. A database is not required for the current implementation.
+
+## Project Structure
 
 ```text
 Shipment ETA Prediction System/
-├── data/              Bookings, reports, ground truth, as-of snapshots and split manifest
-├── models/            Saved models, frozen selection, predictions and evaluation metrics
+│
+├── data/
+│   ├── raw/                 Shipment, voyage, and tracking data
+│   ├── ground_truth/        Complete simulated milestone records
+│   ├── processed/           Prediction snapshots and split assignments
+│   └── metadata/            Dataset configuration and feature definitions
+│
+├── models/
+│   ├── comparison/          Model comparison artifacts
+│   └── tuning/              Optimized models and evaluation results
+│
 ├── src/
-│   ├── backend/       FastAPI endpoints and replay service
-│   ├── data_generation/  Simulator, observation rules and shared feature construction
-│   └── ml/            Forecasting, evaluation and model explanations
-├── frontend/          React application, component tests and Playwright scenarios
-├── scripts/           Dataset checks, analysis and report tools
-├── tests/             Python tests for data, inference and the API
-├── reports/           Technical PDF, figures, screenshots and verification records
-├── DEMO_GUIDE.md      Five-minute interview walkthrough
-└── requirements-tuning.txt   Python dependency entry point, including both boosters
+│   ├── backend/             API and prediction services
+│   ├── data_generation/     Synthetic data and feature construction
+│   └── ml/                  Model training, inference, and evaluation
+│
+├── frontend/
+│   ├── src/                 React application
+│   └── e2e/                 Browser tests
+│
+├── scripts/                 Data, model, and reporting utilities
+├── tests/                   Python automated tests
+│
+├── reports/
+│   ├── screenshots/
+│   ├── architecture.md
+│   ├── dataset_validation.md
+│   ├── demonstration_guide.md
+│   ├── model_comparison.md
+│   ├── tuning_comparison.md
+│   ├── quality_checks.md
+│   └── Shipment ETA Prediction System - Technical Report.pdf
+│
+├── DEMO_GUIDE.md
+├── requirements.txt
+├── requirements-tuning.txt
+└── README.md
 ```
 
-## Prerequisites
+## Dataset
 
-The submission was verified with **64-bit Python 3.11.5**, **Node.js 22.17.1** and **npm 10.9.2**. Put the intended Python 3.11 interpreter on PATH before creating the environment. Python requirements pin scikit-learn 1.4.2, NumPy 1.26.4, pandas 2.2.3, FastAPI 0.133.0, XGBoost 2.1.4 and CatBoost 1.2.8. The frontend lockfile includes React 18.3.1, TypeScript 5.8.3 and Vite 6.4.1. Initial installation requires package-registry access or a populated cache.
+The project uses a reproducible synthetic logistics dataset containing:
 
-## Start on Windows (PowerShell)
+| Description | Count |
+|---|---:|
+| Shipments | 250 |
+| Vessel voyages | 50 |
+| Vessels | 10 |
+| Routes | 5 |
+| Shipment milestones | 5 |
+| Prediction snapshots | 927 |
+| Model input features | 28 |
 
-1. Download **Shipment ETA Prediction System.zip**. From the folder containing the ZIP, extract it. For a Git checkout, copy the repository's actual clone URL and use the alternative below.
+Multiple shipments can travel on the same vessel voyage. These shipments share vessel-level events, including departure and destination-port arrival, while cargo processing, customs, and inland delivery can vary between shipments.
 
-   ```powershell
-   Expand-Archive -LiteralPath '.\Shipment ETA Prediction System.zip' -DestinationPath .
-   ```
+### Shipment milestones
 
-   ```powershell
-   $repoUrl = Read-Host 'Repository clone URL'
-   git clone $repoUrl 'Shipment ETA Prediction System'
-   ```
+1. Origin departure
+2. Destination port arrival
+3. Port processing completion
+4. Customs clearance completion
+5. Final delivery
 
-2. Open the extracted or cloned project in **terminal A**.
+The dataset includes planned schedules, actual event times, weather conditions, congestion measurements, operational delays, and missing tracking reports.
 
-   ```powershell
-   Set-Location -LiteralPath '.\Shipment ETA Prediction System'
-   ```
+The complete physical timeline is retained separately from the reports visible to the forecasting system.
 
-3. Check the interpreter version and create an isolated environment.
+For additional details, see [Dataset Validation](reports/dataset_validation.md).
 
-   ```powershell
-   python --version
-   python -m venv .venv
-   ```
+## ETA Prediction
 
-4. Activate it.
+The system calculates final delivery delay as:
 
-   ```powershell
-   .\.venv\Scripts\Activate.ps1
-   ```
+```text
+Final Delay = Actual Final Delivery - Scheduled Final Delivery
+```
 
-5. Install the pinned Python dependencies and check their compatibility.
+A positive value indicates late delivery. A negative value indicates early delivery.
 
-   ```powershell
-   python -m pip install -r requirements-tuning.txt
-   python -m pip check
-   ```
+The predicted arrival time is calculated as:
 
-6. Verify the supplied models load and reproduce the archived forecasts.
+```text
+Predicted ETA = Scheduled Final Delivery + Predicted Delay
+```
 
-   ```powershell
-   python -m pytest -q tests/test_forecast_models.py
-   ```
+The operational forecast uses the latest observed schedule deviation. Random Forest, XGBoost, and CatBoost provide additional model-based comparisons.
 
-7. Start FastAPI. Leave **terminal A** running. The API documentation is available at [localhost on port 8036](http://127.0.0.1:8036/docs).
+### Delay categories
 
-   ```powershell
-   python -m uvicorn backend.main:app --app-dir src --host 127.0.0.1 --port 8036
-   ```
+| Category | Predicted delay |
+|---|---|
+| Low | Up to 2 hours late |
+| Moderate | More than 2 and up to 6 hours late |
+| High | More than 6 hours late |
 
-8. Open **terminal B** in the project folder (where `README.md` is visible) and enter the frontend directory.
+These categories describe predicted delay magnitude. They are not probabilities or model confidence scores.
 
-   ```powershell
-   Set-Location -LiteralPath frontend
-   ```
+## Installation and Setup
 
-9. Check Node and npm, then install the locked dependencies.
+The application was verified using:
 
-   ```powershell
-   node --version
-   npm.cmd --version
-   npm.cmd ci
-   ```
+- Python 3.11.5 (64-bit)
+- Node.js 22.17.1
+- npm 10.9.2
 
-10. Start Vite and leave **terminal B** running. It forwards browser requests under `/api` to FastAPI.
+Using the specified versions is recommended because the saved model artifacts depend on compatible Python libraries.
 
-    ```powershell
-    $env:SHIPMENT_API_ORIGIN = 'http://127.0.0.1:8036'
-    npm.cmd run dev -- --host 127.0.0.1 --port 5236 --strictPort
-    ```
+### Windows — Step 1: Open the project
 
-11. Open the [Dashboard](http://127.0.0.1:5236/dashboard) in a browser.
-12. Open **Shipments**, select **Delay amplification · SHP0218** and advance from port arrival to port processing. The predicted delay increases from +0.56 h to +6.73 h. Use Ctrl+C in both terminals when finished.
+Extract the ZIP file and open PowerShell in the extracted project directory.
 
-### macOS and Linux shell equivalents
+```powershell
+cd "Shipment ETA Prediction System"
+```
 
-From the directory containing the ZIP, use the following in terminal A. If using a Git checkout, begin at the project folder and skip extraction.
+If using Git, clone the repository and open its project directory instead.
 
-```sh
-unzip 'Shipment ETA Prediction System.zip'
-cd 'Shipment ETA Prediction System'
-python3.11 -m venv .venv
-. .venv/bin/activate
+### Step 2: Create a Python environment
+
+```powershell
+python --version
+python -m venv .venv
+```
+
+Activate the environment:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### Step 3: Install backend dependencies
+
+```powershell
 python -m pip install -r requirements-tuning.txt
 python -m pip check
+```
+
+The tuning requirements include the dependencies needed to load all saved comparison models.
+
+### Step 4: Verify model loading
+
+```powershell
 python -m pytest -q tests/test_forecast_models.py
+```
+
+This checks that the saved prediction models can load and reproduce recorded outputs.
+
+### Step 5: Start the backend
+
+```powershell
 python -m uvicorn backend.main:app --app-dir src --host 127.0.0.1 --port 8036
 ```
 
-From the project root in terminal B, run:
+Keep this terminal running.
 
-```sh
+Backend API documentation:
+
+http://127.0.0.1:8036/docs
+
+Health endpoint:
+
+http://127.0.0.1:8036/api/health
+
+### Step 6: Start the frontend
+
+Open a second terminal in the project directory.
+
+```powershell
+cd frontend
+npm.cmd ci
+```
+
+Start the development server:
+
+```powershell
+$env:SHIPMENT_API_ORIGIN = 'http://127.0.0.1:8036'
+npm.cmd run dev -- --host 127.0.0.1 --port 5236 --strictPort
+```
+
+Keep this terminal running.
+
+### Step 7: Open the application
+
+Visit:
+
+http://127.0.0.1:5236/dashboard
+
+The dashboard should load shipment information from the FastAPI backend.
+
+### macOS and Linux
+
+From the extracted project directory:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-tuning.txt
+python -m pip check
+
+python -m uvicorn backend.main:app --app-dir src --host 127.0.0.1 --port 8036
+```
+
+Open another terminal:
+
+```bash
 cd frontend
 npm ci
 SHIPMENT_API_ORIGIN=http://127.0.0.1:8036 npm run dev -- --host 127.0.0.1 --port 5236 --strictPort
 ```
 
-### Troubleshooting
+## Using the Application
 
-- **Python module or model-loading error.** Run `python --version` and `python -m pip check` in terminal A. Install from `requirements-tuning.txt` using the project environment. If PowerShell blocks activation, use `.\.venv\Scripts\python.exe` in place of `python` for each remaining command. For a hash mismatch or missing artifact, restore the complete `models/` directory from the submission ZIP and repeat step 6.
-- **Port already in use.** Stop the previous server in its terminal or choose a free port. If changing the API port, set `SHIPMENT_API_ORIGIN` to the new API address before restarting Vite. If changing the Vite port, open that port in the browser.
-- **Dashboard fails to load data.** Check the [API health endpoint](http://127.0.0.1:8036/api/health), the Vite proxy address and the backend terminal. A fresh extraction must include both `data/` and `models/`.
+The frontend contains four sections.
 
-## Dataset and replay
+### Dashboard
 
-The synthetic cohort contains 250 consignments on 50 voyages and five routes. Shipments on a sailing share departure, ocean conditions and port congestion. Handling, customs and inland travel can vary by shipment. The simulator retains physical delivery as ground truth even when an intermediate tracking message is delayed or missing. The current application reads the supplied data and forecasts.
+Provides an overview of shipments currently being monitored.
 
-Final delay equals actual minus scheduled inland delivery. Change in deviation equals the current reported deviation minus the previous reported deviation. A positive change adds delay and a negative change recovers time. The 28 inputs use only reports and sensors released by the replay clock. Earlier delivery labels must be available before a later partition begins, and all shipments from each voyage share one partition. The training cohort contains 35 voyages. [Dataset audit](reports/dataset_validation.md) · [Feature schema](data/metadata/feature_schema.json) · [Split manifest](data/processed/split_manifest.csv)
+Displays:
 
-## Application screenshots
+- Total shipments
+- Active shipments
+- Average predicted delay
+- High-delay-risk shipments
+- On-time outlook
+- Delay-risk distribution
+- Shipment progress
+- Shipments requiring attention
+
+The simulation clock controls which shipment reports are available.
+
+The on-time outlook measures the percentage of active shipments predicted to arrive at or before schedule. It is not an accuracy metric.
+
+### Shipments
+
+Provides shipment search, filters, and individual shipment details.
+
+A shipment view includes:
+
+- Scheduled delivery
+- Predicted delivery
+- Predicted delay
+- Delay category
+- Reported milestone timeline
+- ETA prediction trend
+- Operational information
+- Explanation of the forecast
+
+Selecting the next reported milestone updates the available information and ETA.
+
+### Delay Analysis
+
+Explains how delays accumulate or recover across the journey.
+
+Includes:
+
+- Stage-wise delay propagation
+- Added delay and recovered time
+- Forecast revisions
+- Route-level comparisons
+- Congestion and processing relationships
+- Missing tracking information
+- Hypothetical scenarios
+
+### Model Performance
+
+Displays saved validation and test results for:
+
+- Current-delay persistence
+- Random Forest
+- XGBoost residual regression
+- CatBoost residual regression
+
+Available evaluations include:
+
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- Median absolute error
+- R² score
+- P90 absolute error
+- Stage-wise performance
+- Feature importance
+- Significant-delay underprediction
+
+## Application Screenshots
 
 | Dashboard | Shipments |
 |---|---|
-| ![Dashboard showing fleet status and attention reasons](reports/screenshots/dashboard.png) | ![Shipment details showing a released milestone and delivery estimate](reports/screenshots/shipments.png) |
+| ![Dashboard](reports/screenshots/dashboard.png) | ![Shipments](reports/screenshots/shipments.png) |
 
 | Delay Analysis | Model Performance |
 |---|---|
-| ![Stage deviations, interval changes and recovered time](reports/screenshots/delay-analysis.png) | ![Saved validation model comparison and forecast errors](reports/screenshots/model-performance.png) |
+| ![Delay Analysis](reports/screenshots/delay-analysis.png) | ![Model Performance](reports/screenshots/model-performance.png) |
 
-## Walk through a shipment
+## Example Shipment Journeys
 
-[Interview walkthrough](DEMO_GUIDE.md) · [Final acceptance checklist](reports/final_submission_checklist.md)
+Three shipments demonstrate different operational behaviors.
 
-1. **Dashboard.** Select an attention-list shipment to inspect the evidence, or open the Shipments tab for the three guided replays. The attention rule flags a predicted delay above two hours, an increase in deviation, or a confirmed gap.
-2. **Shipments.** Choose **Delay amplification · SHP0218**. The demo sets the clock to its first released report. Advance to port arrival and then port processing. The 6.17 h increase moves the ETA from 02:50 to 09:00 UTC on July 8. Under **Why This ETA?**, inspect the measured intervals and switch between comparative forecasts. Changing this selector leaves the issued operational ETA in place.
-3. **Delay Analysis.** Follow the shipment’s propagation link. Inspect report-by-report revisions and the release cutoff. Switch the fleet relationship to compare recovery, route variation or missing tracking. The what-if control creates a hypothetical next interval from the same visible state.
-4. **Completed journey.** Choose **Reveal completed history** for actual delivery and the full physical ledger. Return to replay to hide it. For different evidence, **SHP0236** shows partial customs recovery and **SHP0238** spans two missing intermediate reports.
-5. **Model Performance.** Select validation or held-out test, and choose a model for the charts. The test partition was previously inspected during development. The demonstrations were selected after the model was frozen.
+| Shipment | Scenario |
+|---|---|
+| SHP0218 | Delay amplification during port processing |
+| SHP0236 | Partial delay recovery after customs clearance |
+| SHP0238 | Missing intermediate tracking reports |
 
-[Demonstration guide with exact report and outcome clocks](reports/demonstration_guide.md) · [Three-page technical report](<reports/Shipment ETA Prediction System - Technical Report.pdf>) · [Architecture and API](reports/architecture.md)
+To explore an example:
 
-## Final prediction and risk
+1. Open the Shipments tab.
+2. Select one of the example shipment links.
+3. Observe the current ETA.
+4. Advance to the next available report.
+5. Compare the updated forecast.
+6. Open Delay Analysis to inspect the change.
+7. Reveal the completed journey to compare with actual delivery.
 
-**Current-delay persistence** adds the latest reported deviation to the booked final delivery. Positive delay means late. A missing anchor falls back to zero. ETA is rounded to whole seconds. Only a released pre-delivery milestone issues a forecast. The qualitative risk bands use predicted delay: Low at or below 2 h, Moderate above 2 h through 6 h, and High above 6 h. These thresholds give no probability of late delivery.
+See [DEMO_GUIDE.md](DEMO_GUIDE.md) for a short walkthrough.
 
-The original Random Forest and tuned residual XGBoost and CatBoost run on the same 28 point-in-time features. Each residual model adds its estimated remaining change to the observed deviation once. Forest decision-path contributions and native booster SHAP values describe associations in the fitted model. Evidence from a missing input is explicitly marked as imputed. Only intervals with both reports can establish the observed handling or customs duration. A net change across a tracking gap cannot be assigned to an individual stage.
+## Model Evaluation
 
-## Frozen evaluation
+The operational forecasting method is current-delay persistence, selected based on validation MAE.
 
-Each cell shows validation / held-out test. Errors are hours. The first cohort has 87 reports from 25 shipments on five voyages. The second has 175 reports from 50 shipments on ten voyages.
+The learned models provide comparisons of their ability to predict additional delay or recovery.
 
-| Model | MAE | RMSE | R² | P90 absolute error | Severe shortfall |
-|---|---:|---:|---:|---:|---:|
-| Persistence (operational) | 4.829 / 3.619 | 6.466 / 5.306 | .540 / .158 | 11.657 / 8.388 | 6.580 / 8.665 |
-| Original Random Forest | 5.650 / 3.976 | 6.978 / 5.392 | .464 / .131 | 11.354 / 7.839 | 6.302 / 8.138 |
-| Tuned XGBoost residual | 4.924 / 3.863 | 6.249 / 5.143 | .570 / .209 | 10.590 / 8.424 | 5.523 / 6.925 |
-| Tuned CatBoost residual | 4.912 / 3.786 | 6.297 / 5.163 | .564 / .203 | 10.557 / 7.943 | 5.743 / 7.645 |
+| Model | Validation MAE (h) | Test MAE (h) |
+|---|---:|---:|
+| Current-delay persistence | 4.829 | 3.619 |
+| Random Forest | 5.650 | 3.976 |
+| Tuned XGBoost residual | 4.924 | 3.863 |
+| Tuned CatBoost residual | 4.912 | 3.786 |
 
-Severe shortfall averages max(actual delay − forecast delay, 0) when final delay exceeds six hours. Persistence had the lowest validation MAE and was frozen before the final test comparison. Tuned XGBoost reduced RMSE and severe underprediction on both cohorts. The [model comparison report](reports/model_comparison.md) links the release decision to all nine archived candidates, accuracy windows, stage scores, plots and shipment-weighted results.
+The validation results use 87 prediction snapshots from 25 shipments and five voyages.
 
-The cohorts are synthetic. Reports within a voyage are correlated, and only 11 validation shipments and 10 test shipments finished more than six hours late. The held-out R² of 0.158 indicates limited explained variance. Future disruptions can occur after the latest available report. Wider validation needs fresh voyages with real carrier reporting lags, missing messages and independently measured arrival outcomes.
+The test results use 175 snapshots from 50 shipments and ten voyages.
 
-## Verification
+Persistence has the lowest overall MAE. The boosting models reduce some larger-error and severe-delay measures, but they do not outperform persistence on overall MAE.
 
-Activate the project virtual environment from the root to place its Python first on PATH. Playwright launches its own API on 8014 and web server on 5184. To check the application already running on 5236, set `$env:SHIPMENT_E2E_BASE_URL = "http://127.0.0.1:5236"` before running Playwright.
+The test set was also inspected during model development, so additional experiments on this same data should not be treated as a completely untouched independent evaluation.
+
+Detailed metrics are available in:
+
+- [Model Comparison](reports/model_comparison.md)
+- [Optimization and Evaluation](reports/tuning_comparison.md)
+
+## Explainability
+
+The application separates two types of explanations.
+
+**Operational evidence:** Reported stage delays, changes between milestone deviations, congestion measurements, and recovered time.
+
+**Model-based explanations:** Feature contributions and feature importance calculated from fitted machine learning models.
+
+Missing observations are identified explicitly. A change measured across missing reports is not automatically assigned to an individual unobserved stage.
+
+## Testing
+
+Run Python tests from the project root:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q
-$env:Path = (Resolve-Path .venv\Scripts).Path + ";" + $env:Path
-cd frontend
+python -m pytest -q
+```
+
+Run frontend checks inside `frontend/`:
+
+```powershell
 npm.cmd test
 npm.cmd run typecheck
 npm.cmd run lint
 npm.cmd run build
+```
+
+Run the Chromium browser tests:
+
+```powershell
 npx.cmd playwright install chromium --only-shell
 npx.cmd playwright test
 ```
 
-The dataset reproducibility tests write only temporary comparison files. `python scripts/demonstrations.py` verifies demo forecasts and rebuilds their guide. `python scripts/technical_report.py` renders the technical PDF. Neither operation fits a model.
+The project includes recorded verification results in [Quality Checks](reports/quality_checks.md).
+
+## Documentation
+
+- [Architecture and API](reports/architecture.md)
+- [Dataset Validation](reports/dataset_validation.md)
+- [Model Comparison](reports/model_comparison.md)
+- [Optimization and Evaluation](reports/tuning_comparison.md)
+- [Demonstration Guide](reports/demonstration_guide.md)
+- [Quality Checks](reports/quality_checks.md)
+- [Application Verification](reports/release_checks.md)
+- [Technical Report](reports/Shipment%20ETA%20Prediction%20System%20-%20Technical%20Report.pdf)
+
+## Limitations
+
+This application currently uses synthetic shipment data. Operational relationships are simulated using documented rules and are not calibrated against live shipping-company data.
+
+The number of independent voyages is limited, and multiple snapshots from a shipment share the same delivery outcome.
+
+Some future operational disruptions are unknown at the time a forecast is issued. This limits early-stage ETA accuracy.
+
+The delay categories are not calibrated probabilities, and the model results should not be interpreted as proven real-world performance.
+
+Future improvements could use actual carrier tracking records, detailed port operations data, calibrated delay probabilities, and prospective evaluation on new voyages.
