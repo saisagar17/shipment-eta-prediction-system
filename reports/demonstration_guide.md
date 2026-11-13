@@ -1,59 +1,153 @@
-# Three held-out shipment replays
+# Shipment Journey Examples
 
-These examples illustrate three observable patterns in the existing test records. The model was already frozen when the examples were chosen. All clocks are UTC. Positive deviation means late relative to the booked milestone.
+This guide presents three shipments that demonstrate delay amplification, partial recovery, and missing tracking observations.
 
-From Dashboard, open a demonstration shipment in Shipments. Inspect the prediction at the first released report, advance to the next released milestone and compare the revised ETA. In Delay Analysis, check the signed change and gaps. Return to shipment details for the completed-journey reveal. Model Performance shows population scores.
+All examples are taken from the existing test dataset. All timestamps use UTC.
 
-The row clock is when the report became available. The departure row establishes the starting deviation. Subsequent rows compare with the immediately preceding **reported** stage. For persistence, the signed change in deviation and the change in issued ETA are equal. A missing report issues no update.
+The operational ETA is calculated by adding the latest observed stage deviation to the scheduled final delivery time.
 
-## Delay amplification · SHP0218
+## Example 1 — Delay Amplification
 
-Chennai → Mumbai → Pune · VG044. Booked final delivery **2025-07-08 02:16:33 UTC**.
+**Shipment:** SHP0218
 
-| Released at (UTC) | Observable milestone | Deviation (h) | Change / ETA revision (h) | Operational ETA (UTC) |
-|---|---|---:|---:|---|
-| 2025-07-04 06:34:52 | Departure | +0.35 | Initial | 2025-07-08 02:37:27 |
-| 2025-07-07 07:21:00 | Port arrival | +0.56 | +0.21 | 2025-07-08 02:50:12 |
-| 2025-07-07 22:12:24 | Port processing | +6.73 | +6.17 | 2025-07-08 09:00:23 |
-| 2025-07-08 15:42:54 | Customs clearance | +19.28 | +12.55 | 2025-07-08 21:33:27 |
+**Route:** Chennai → Mumbai → Pune
 
-Port processing took 15.11 h. Between the port arrival and handling reports, the observed deviation grew by 6.17 h to 6.73 h late. The operational ETA moved later by the same interval.
+**Voyage:** VG044
 
-## Partial delay recovery · SHP0236
+**Scheduled delivery:** July 8, 2025, 02:16:33 UTC
 
-Singapore → Chennai → Bengaluru · VG048. Booked final delivery **2025-07-30 23:48:51 UTC**.
+| Report available | Milestone | Stage delay | Updated ETA |
+|---|---|---:|---|
+| Jul 4, 06:34:52 | Departure | +0.35 h | Jul 8, 02:37:27 |
+| Jul 7, 07:21:00 | Port arrival | +0.56 h | Jul 8, 02:50:12 |
+| Jul 7, 22:12:24 | Port processing | +6.73 h | Jul 8, 09:00:23 |
+| Jul 8, 15:42:54 | Customs clearance | +19.28 h | Jul 8, 21:33:27 |
 
-| Released at (UTC) | Observable milestone | Deviation (h) | Change / ETA revision (h) | Operational ETA (UTC) |
-|---|---|---:|---:|---|
-| 2025-07-25 06:24:33 | Departure | +0.35 | Initial | 2025-07-31 00:09:48 |
-| 2025-07-30 12:02:25 | Port processing | +3.56 | +3.21 across gap | 2025-07-31 03:22:09 |
-| 2025-07-30 15:40:32 | Customs clearance | +0.74 | -2.82 | 2025-07-31 00:33:02 |
+Between port arrival and port processing:
 
-Customs clearance recovered 2.82 h relative to the preceding report. The shipment was still 0.74 h behind schedule. The operational ETA therefore moved earlier while remaining later than the booking.
+```text
+Additional Delay = 6.73 - 0.56
+                 = 6.17 hours
+```
 
-## Missing intermediate tracking · SHP0238
+The increase in observed deviation causes the predicted ETA to move later by approximately 6.17 hours.
 
-Singapore → Chennai → Bengaluru · VG048. Booked final delivery **2025-07-31 00:26:35 UTC**.
+Port processing lasted approximately 15.11 hours.
 
-| Released at (UTC) | Observable milestone | Deviation (h) | Change / ETA revision (h) | Operational ETA (UTC) |
-|---|---|---:|---:|---|
-| 2025-07-25 06:24:33 | Departure | +0.35 | Initial | 2025-07-31 00:47:32 |
-| 2025-07-30 20:40:43 | Customs clearance | +5.99 | +5.64 across gap | 2025-07-31 06:26:09 |
+### Final Outcome
 
-The customs clearance report followed 2 missing intermediate reports. The deviation changed by +5.64 h over the full observed interval. The records cannot assign portions of that change to ocean transit, handling or customs.
+Actual delivery:
 
-## Completed-journey reveal
+**July 8, 2025, 22:32:28 UTC**
 
-Open this comparison after finishing the point-in-time replay. Actual final delivery is the physical inland delivery. Each final delay is actual delivery minus booked delivery. Delivery closes the journey without issuing another forecast.
+Final delay:
 
-| Shipment | Last pre-delivery forecast (UTC) | Actual final delivery (UTC) | Final delay (h) |
-|---|---|---|---:|
-| SHP0218 | 2025-07-08 21:33:27 | 2025-07-08 22:32:28 | +20.27 |
-| SHP0236 | 2025-07-31 00:33:02 | 2025-07-30 23:34:57 | -0.23 |
-| SHP0238 | 2025-07-31 06:26:09 | 2025-07-31 03:17:19 | +2.85 |
+**+20.27 hours**
 
-## How the examples were selected
+The example demonstrates how successive operational delays affect delivery forecasts.
 
-Among test shipments, select the largest positive change during an observed adjacent port-processing interval ending late. Next, select the largest adjacent handling or customs recovery that still ends late. Finally, select the longest run of missing intermediate reports bounded by two reports before delivery. Use distinct IDs in this order. Ties use shipment ID and then milestone order. Selection uses released deviations and the existing split manifest. The generator joins final outcomes only after it has selected the examples.
+## Example 2 — Partial Delay Recovery
 
-Run `python scripts/demonstrations.py` from the project root to reproduce this guide and its demonstration catalog. The script checks every held-out report against the saved persistence delay and ETA before writing either file.
+**Shipment:** SHP0236
+
+**Route:** Singapore → Chennai → Bengaluru
+
+**Voyage:** VG048
+
+**Scheduled delivery:** July 30, 2025, 23:48:51 UTC
+
+| Report available | Milestone | Stage delay | Updated ETA |
+|---|---|---:|---|
+| Jul 25, 06:24:33 | Departure | +0.35 h | Jul 31, 00:09:48 |
+| Jul 30, 12:02:25 | Port processing | +3.56 h | Jul 31, 03:22:09 |
+| Jul 30, 15:40:32 | Customs clearance | +0.74 h | Jul 31, 00:33:02 |
+
+Between port processing and customs clearance:
+
+```text
+Recovered Time = 3.56 - 0.74
+               = 2.82 hours
+```
+
+The shipment recovered part of its accumulated lateness.
+
+Its expected delivery moved earlier, although the shipment remained behind schedule.
+
+### Final Outcome
+
+Actual delivery:
+
+**July 30, 2025, 23:34:57 UTC**
+
+Final delay:
+
+**-0.23 hours**
+
+The final delivery was slightly earlier than scheduled.
+
+## Example 3 — Missing Intermediate Tracking
+
+**Shipment:** SHP0238
+
+**Route:** Singapore → Chennai → Bengaluru
+
+**Voyage:** VG048
+
+**Scheduled delivery:** July 31, 2025, 00:26:35 UTC
+
+| Report available | Milestone | Stage delay | Updated ETA |
+|---|---|---:|---|
+| Jul 25, 06:24:33 | Departure | +0.35 h | Jul 31, 00:47:32 |
+| Jul 30, 20:40:43 | Customs clearance | +5.99 h | Jul 31, 06:26:09 |
+
+The port arrival and port-processing completion reports are missing.
+
+The change between available observations is:
+
+```text
+Net Delay Change = 5.99 - 0.35
+                 = 5.64 hours
+```
+
+The system can measure the total change across the observed interval.
+
+It cannot reliably assign parts of the change to ocean transit, handling, or customs because those intermediate observations are unavailable.
+
+### Final Outcome
+
+Actual delivery:
+
+**July 31, 2025, 03:17:19 UTC**
+
+Final delay:
+
+**+2.85 hours**
+
+## Viewing the Examples
+
+1. Open the Shipments tab.
+2. Select one of the three example shipments.
+3. Review the initial available ETA.
+4. Advance through reported milestones.
+5. Open Delay Analysis.
+6. Inspect added delay, recovered time, or tracking gaps.
+7. Return to shipment details.
+8. Reveal the completed journey.
+
+Actual final delivery is intentionally hidden until the completed-history view is requested.
+
+## Example Selection
+
+The examples were selected from recorded test shipments based on observable operational patterns:
+
+- A large positive delay change during port processing
+- A measurable recovery while the shipment was still behind schedule
+- Missing intermediate reports followed by a later available report
+
+The recorded outcomes were not modified to create these demonstrations.
+
+The examples can be checked using:
+
+```bash
+python scripts/demonstrations.py
+```
