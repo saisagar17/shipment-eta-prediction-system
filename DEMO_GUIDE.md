@@ -1,15 +1,121 @@
-# Five-minute interview demo
+# Shipment ETA Prediction System — Quick Walkthrough
 
-Start on **Dashboard**. Open an attention-list shipment to see the reason it was flagged, then choose **Shipments** and one of the three replay links. Each link resets the simulation clock to the first available departure report. Times below are UTC.
+This guide demonstrates how the application predicts final delivery times and explains changes in shipment delays.
 
-| Shipment | What to do | What the reports establish |
-|---|---|---|
-| **SHP0218 · Amplification** | Advance through port arrival to port processing. Open **Inspect delay propagation**. | Deviation rises from +0.56 h to +6.73 h. Processing adds 6.17 h, moving the July 8 ETA from 02:50 to 09:00. |
-| **SHP0236 · Partial recovery** | Advance to port processing and then customs. Compare the two issued ETAs. | Deviation falls from +3.56 h to +0.74 h. Customs gains 2.82 h, bringing the July 31 ETA forward from 03:22 to 00:33. |
-| **SHP0238 · Missing tracking** | Advance from departure directly to customs. Inspect the missing slots and the revisions table. | The +5.64 h change spans two missing reports. Its division across transit, handling and customs is unknown. |
+The examples use three shipments from the saved test dataset. All displayed timestamps are in UTC.
 
-Under **Why This ETA?**, distinguish the measured schedule deviation from the learned models’ estimates of the remaining delay. Switch the comparison model and point out one available or imputed feature. The operational forecast still carries forward the latest observed deviation.
+## Start the Application
 
-Choose **Reveal completed history** only after explaining the forecast. Compare the last forecast with the actual delivery and return to replay to hide the physical ledger. The [full report-by-report guide](reports/demonstration_guide.md) includes exact timestamps and all three outcomes.
+Follow the instructions in [README.md](README.md) to start the backend and frontend.
 
-Finish on **Model Performance**. Switch from validation (87 snapshots) to held-out test (175). Persistence had the lowest MAE, 4.829 h and 3.619 h respectively. Tuned residual XGBoost reduced mean severe-delay shortfall from 6.580 to 5.523 h on validation and from 8.665 to 6.925 h on test. Risk bands are delay thresholds. The data are synthetic and the test cohort had been inspected previously.
+Open:
+
+http://127.0.0.1:5236/dashboard
+
+## 1. Explore the Dashboard
+
+The Dashboard displays the shipment overview, active deliveries, predicted delays, delay categories, and shipments requiring attention.
+
+Use the simulation timestamp to view the information available at different moments in the shipment journey.
+
+Select a shipment to open its details.
+
+## 2. Delay Amplification — SHP0218
+
+Open **Shipments** and choose **Delay amplification · SHP0218**.
+
+This shipment travels from Chennai through Mumbai to Pune.
+
+Advance through the available tracking reports.
+
+| Milestone | Observed delay |
+|---|---:|
+| Departure | +0.35 h |
+| Port arrival | +0.56 h |
+| Port processing | +6.73 h |
+
+The increase from port arrival to processing is:
+
+```text
+6.73 - 0.56 = 6.17 hours
+```
+
+The operational ETA moves from July 8, 02:50 UTC to July 8, 09:00 UTC.
+
+Open **Delay Analysis** to inspect the increase in schedule deviation.
+
+## 3. Delay Recovery — SHP0236
+
+Choose **Partial delay recovery · SHP0236**.
+
+This shipment travels from Singapore through Chennai to Bengaluru.
+
+At port processing, the observed deviation is +3.56 hours.
+
+After customs clearance, it decreases to +0.74 hours.
+
+```text
+Recovered time = 3.56 - 0.74
+               = 2.82 hours
+```
+
+The updated ETA moves earlier because the later operation recovered some of the accumulated delay.
+
+The shipment remains slightly behind schedule.
+
+## 4. Missing Tracking — SHP0238
+
+Choose **Missing intermediate tracking · SHP0238**.
+
+The departure report shows a deviation of +0.35 hours.
+
+The next available report is customs clearance, with a deviation of +5.99 hours.
+
+Two intermediate reports are missing.
+
+The observable change is:
+
+```text
+5.99 - 0.35 = 5.64 hours
+```
+
+This change belongs to the complete interval between the two reported events.
+
+The system does not assign an unsupported portion of the delay to an individual missing stage.
+
+## 5. Understand the Forecast
+
+Open the **Why This ETA?** section on the shipment details page.
+
+Review:
+
+- Current known schedule deviation
+- Observed additional delay
+- Recovered time
+- Available operational measurements
+- Prediction method
+- Model-based explanations
+
+The operational forecast uses the latest known deviation.
+
+The other models estimate the remaining delay change using available shipment features.
+
+## 6. Reveal the Completed Journey
+
+After reviewing the available forecasts, select **Reveal completed history**.
+
+Compare the latest prediction with the actual final delivery time.
+
+Returning to replay hides future information again.
+
+## 7. Compare Prediction Methods
+
+Open **Model Performance**.
+
+Compare validation and test metrics for persistence, Random Forest, XGBoost, and CatBoost.
+
+Persistence has the lowest overall validation and test MAE, while some learned models have lower squared-error or severe-delay underprediction measures.
+
+## Further Reading
+
+The [detailed demonstration guide](reports/demonstration_guide.md) contains exact report timestamps and the final delivery outcomes for all three shipments.
