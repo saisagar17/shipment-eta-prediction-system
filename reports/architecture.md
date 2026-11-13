@@ -1,37 +1,215 @@
-# Architecture and evidence boundaries
+# System Architecture
 
-The React client calls a local FastAPI service. The service joins the unchanged manifest to booking plans, timestamped milestone reports and independently released port measurements. The UI fetches new results when the shipment, report or simulation clock changes. Forecasts, evidence, scenarios and scores come from the API.
+## Overview
 
-| Layer | Inputs and responsibilities | Code or evidence |
-|---|---|---|
-| Replay | The 50 test bookings provide the fleet. A shared voyage supplies common departure and ocean conditions. Handling, customs and inland travel vary by shipment. | `src/backend/service.py`, `data/raw/` |
-| As-of features | A stage can enter the 28-column vector only after its report release. Independent sensor clocks gate weather and congestion. Both endpoints are required to measure an interval. | `src/data_generation/snapshots.py`, `data/metadata/feature_schema.json` |
-| Inference | Startup checks frozen model digests, data signatures, package versions and feature order. E0 serves the operational ETA. E1, T1 and T2 run as named comparisons. | `src/backend/forecast_models.py`, `models/tuning/freeze.json` |
-| Interpretation | The observed ledger computes signed differences from each preceding report. Separate local explanations use forest path changes or booster TreeSHAP values grouped across encoded columns. E0 carries the current observed deviation forward. | `src/ml/propagation.py`, `frontend/src/ForecastEvidence.tsx` |
-| Fleet analysis | Report cutoffs also apply to fleet relationships. Congestion pairs are aggregated per voyage. Handling and customs recovery require adjacent reports. Tracking gaps become visible only after a later report. | `src/backend/interactions.py`, `frontend/src/Interactions.tsx` |
-| Offline evaluation | Saved validation and test records supply metrics, stage scores and prediction-error charts. Evaluation outcomes appear on Model Performance in aggregate or anonymous points. | `models/tuning/validation/`, `models/tuning/test/`, `frontend/src/Performance.tsx` |
+The Shipment ETA Prediction System combines logistics data processing, model inference, operational delay analysis, and an interactive web application.
 
-## Clocks and arithmetic
+The backend manages shipment information and predictions. The frontend provides visual access to shipment journeys, delay calculations, and evaluation results.
 
-For a released report, **deviation = actual milestone time − booked milestone time**. Each new deviation replaces the previous balance. A positive difference between two observed deviations adds delay. A negative difference gains time. When an intermediate report is missing, the difference applies to the entire visible interval. Only the explicit completed-journey reveal joins the full physical ledger for an individual shipment.
+## Architecture
 
-The operational ETA equals booked inland delivery plus the last issued deviation. Both residual models add a learned remaining correction to that same deviation. A learned model’s forecast can be reconstructed from its starting value, signed feature effects and any persistence anchor. Global forest importance measures validation MAE change under permutation. Global booster importance measures mean absolute grouped SHAP values on training rows. Their scales describe different quantities.
+```text
+Synthetic Logistics Dataset
+          |
+          v
+Data Processing and Validation
+          |
+          v
+Point-in-Time Feature Construction
+          |
+          v
+Saved Forecasting Models
+          |
+          v
+FastAPI Prediction Services
+          |
+          v
+React Dashboard
+```
 
-The fleet recovery statistic measures the amount of **existing lateness** removed in complete adjacent intervals. In a shipment’s ledger, the signed interval gain can also describe a shipment moving further ahead of schedule. Shipment details label the latter as time gained.
+## Main Components
 
-## API entry points
-
-| Request | Result |
+| Component | Responsibility |
 |---|---|
-| GET `/api/metadata`, `/api/health` | Clock range, version, safe demonstration start points and service readiness |
-| GET `/api/dashboard`, `/api/shipments` | Active operational predictions, rule-based risk, attention reasons, search and filtering |
-| GET `/api/shipments/{id}` | As-of booking and timeline. Explicit `historical=true` returns the completed physical ledger |
-| POST `/api/predict` | Body includes shipment_id and optional as_of and stage. Returns the operational ETA, observed evidence and the four model forecasts |
-| POST `/api/shipments/{id}/advance?as_of=…` | Explicitly advances the requested replay to the next available pre-delivery report |
-| GET `/api/shipments/{id}/milestones`, `/api/shipments/{id}/propagation` | Release-filtered milestones and each issued ETA revision |
-| POST `/api/scenario` | Same forecast trigger and a hypothetical next interval in hours. Both branches use the current released measurements |
-| GET `/api/analysis/interactions?as_of=…` | Paired fleet observations with units, denominators and missingness |
-| GET `/api/model/comparison?split=validation` or `test` | operational-model comparison, stage scores and chart points |
-| GET `/api/model/metrics`, `/api/model/features` | Original forest evaluation and permutation importance for existing clients |
+| Data generation | Creates shipment schedules, operational events and reporting delays |
+| Ground truth | Stores complete physical event timelines |
+| Feature construction | Builds features from available observations |
+| Machine learning | Estimates final delivery delay |
+| Delay propagation | Calculates added delay and recovered time |
+| FastAPI | Provides predictions and shipment information |
+| React | Displays forecasts, explanations and analysis |
+| Model evaluation | Compares prediction methods and operational errors |
 
-Sparse monitoring, small subgroups and synthetic operating rules limit transfer to live shipments. Prospective evaluation on new voyages is required before assigning alert probabilities or using these rankings to make carrier decisions.
+## Data Design
+
+The dataset represents cargo consignments transported on vessel voyages.
+
+Multiple shipments can share a vessel voyage and therefore share departure, sailing conditions, and destination-port arrival.
+
+Cargo handling, customs clearance, and inland delivery are shipment-specific.
+
+The data is organized into:
+
+- Vessel voyages
+- Shipments
+- Tracking milestones
+- Port measurements
+- Complete ground truth
+- Prediction snapshots
+- Dataset split assignments
+
+## Prediction Workflow
+
+A shipment forecast follows these steps:
+
+1. Select a shipment and observation time.
+2. Retrieve tracking reports available at that time.
+3. Retrieve available weather and congestion measurements.
+4. Construct the approved prediction features.
+5. Calculate the latest known schedule deviation.
+6. Generate the operational ETA.
+7. Generate comparative model predictions.
+8. Return delay magnitude, risk category and explanations.
+
+A prediction never uses tracking information released after its observation time.
+
+## ETA Calculation
+
+The actual schedule deviation at a milestone is:
+
+```text
+Stage Delay = Actual Milestone Time - Scheduled Milestone Time
+```
+
+The operational ETA is:
+
+```text
+Predicted ETA = Scheduled Final Delivery + Current Observed Delay
+```
+
+The residual learning models use:
+
+```text
+Residual Delay = Final Delay - Current Observed Delay
+```
+
+At inference:
+
+```text
+Predicted Final Delay =
+    Current Observed Delay + Predicted Residual Delay
+```
+
+This allows residual models to estimate additional delay or recovery.
+
+## Delay Propagation
+
+For consecutive reported milestones:
+
+```text
+Net Delay Change =
+    Current Stage Deviation - Previous Reported Deviation
+```
+
+A positive change indicates additional delay.
+
+A negative change indicates recovered time.
+
+The system avoids adding cumulative stage deviations together, as this would double-count delays.
+
+If intermediate reports are missing, the calculated change applies to the full interval between available observations.
+
+## Model Serving
+
+The API loads saved forecasting artifacts when the service starts.
+
+The operational method is current-delay persistence.
+
+Available comparison models include:
+
+- Random Forest
+- Tuned XGBoost residual regression
+- Tuned CatBoost residual regression
+
+All learned models use the approved 28-feature input schema.
+
+Saved artifacts are checked for compatibility and integrity.
+
+## Explainability
+
+The application provides two explanation categories.
+
+### Operational Evidence
+
+Includes:
+
+- Reported schedule deviations
+- Added and recovered delay
+- Known processing durations
+- Available weather and congestion measurements
+- Missing report information
+
+### Model-Based Evidence
+
+Includes:
+
+- Feature importance
+- Local model feature contributions
+- Residual delay estimates
+- Comparison with operational persistence
+
+Model feature contributions describe learned associations, not proven causes.
+
+## API Endpoints
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /api/health` | Service readiness |
+| `GET /api/metadata` | Simulation and model metadata |
+| `GET /api/dashboard` | Operational overview |
+| `GET /api/shipments` | Shipment search and filtering |
+| `GET /api/shipments/{id}` | Shipment details |
+| `GET /api/shipments/{id}/milestones` | Available milestone information |
+| `GET /api/shipments/{id}/propagation` | Stage delay analysis |
+| `POST /api/shipments/{id}/advance` | Advance to next available report |
+| `POST /api/predict` | Generate ETA prediction |
+| `POST /api/scenario` | Hypothetical operational scenario |
+| `GET /api/analysis/interactions` | Operational relationships |
+| `GET /api/model/comparison` | Validation and test comparisons |
+| `GET /api/model/metrics` | Saved model metrics |
+| `GET /api/model/features` | Feature information |
+
+Interactive API documentation is available at:
+
+http://127.0.0.1:8036/docs
+
+## Frontend
+
+The React application contains four navigation sections:
+
+1. Dashboard
+2. Shipments
+3. Delay Analysis
+4. Model Performance
+
+Shipment details are displayed within the Shipments section.
+
+The UI retrieves data from FastAPI rather than calculating model predictions in the browser.
+
+## Data Leakage Prevention
+
+The system uses report availability timestamps and independent sensor release times.
+
+It also maintains chronological, voyage-grouped partitions.
+
+All shipments and snapshots belonging to the same voyage remain in the same partition.
+
+Final delivery outcomes are used for model evaluation only after their reporting times.
+
+## Limitations
+
+The operational relationships are based on synthetic simulation assumptions.
+
+Multiple snapshots from one shipment are correlated, and the number of independent voyages is limited.
+
+Live operation would require real tracking feeds, additional historical voyages, monitoring, and prospective evaluation.
