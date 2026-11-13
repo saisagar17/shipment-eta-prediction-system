@@ -31,7 +31,7 @@ The fleet recovery statistic measures the amount of **existing lateness** remove
 | GET `/api/shipments/{id}/milestones`, `/api/shipments/{id}/propagation` | Release-filtered milestones and each issued ETA revision |
 | POST `/api/scenario` | Same forecast trigger and a hypothetical next interval in hours. Both branches use the current released measurements |
 | GET `/api/analysis/interactions?as_of=…` | Paired fleet observations with units, denominators and missingness |
-| GET `/api/model/comparison?split=validation` or `test` | Phase 2.2 frozen operational-model comparison, stage scores and chart points |
+| GET `/api/model/comparison?split=validation` or `test` | operational-model comparison, stage scores and chart points |
 | GET `/api/model/metrics`, `/api/model/features` | Original forest evaluation and permutation importance for existing clients |
 
 Sparse monitoring, small subgroups and synthetic operating rules limit transfer to live shipments. Prospective evaluation on new voyages is required before assigning alert probabilities or using these rankings to make carrier decisions.
