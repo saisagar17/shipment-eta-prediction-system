@@ -1,0 +1,15 @@
+{
+  "recommended": "E0",
+  "lowest_validation_mae": "E0",
+  "candidate": {
+    "name": "Current-delay persistence",
+    "family": "persistence",
+    "target": "baseline"
+  },
+  "model_file": "E0.joblib",
+  "model_sha256": "0abb80a17ca886582b3fccdbd756f988cb587320a300b38d6fbc4591dc81f993",
+  "validation_mae_gain_hours": 0.0,
+  "severe_mean_underprediction_reduction_hours": 0.0,
+  "rule": "Admit models beating persistence on MAE with no increase in mean significant-delay shortfall. Rank eligible models by MAE, then shortfall, RMSE, P90 and ID. Otherwise retain persistence.",
+  "status": "Offline recommendation; serving release is separate."
+}

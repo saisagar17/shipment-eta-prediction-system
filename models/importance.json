@@ -1,0 +1,142 @@
+[
+  {
+    "feature": "current_stage_delay_hours",
+    "increase_mae": 3.211991735112238,
+    "sd": 0.2550851550139841
+  },
+  {
+    "feature": "cumulative_recovered_hours",
+    "increase_mae": 0.06168788538355461,
+    "sd": 0.01776567712336654
+  },
+  {
+    "feature": "cargo_type",
+    "increase_mae": 0.0470072594792633,
+    "sd": 0.08323393649302632
+  },
+  {
+    "feature": "port_processing_delay_hours",
+    "increase_mae": 0.03734693636692388,
+    "sd": 0.033070028155056864
+  },
+  {
+    "feature": "time_since_last_event_hours",
+    "increase_mae": 0.03154430713535809,
+    "sd": 0.032364002182400334
+  },
+  {
+    "feature": "planned_duration_hours",
+    "increase_mae": 0.021141456589066365,
+    "sd": 0.06420586062245974
+  },
+  {
+    "feature": "departure_delay_hours",
+    "increase_mae": 0.019862113431748263,
+    "sd": 0.009099779095912263
+  },
+  {
+    "feature": "observed_congestion_level",
+    "increase_mae": 0.017269509188770904,
+    "sd": 0.0077862360841403555
+  },
+  {
+    "feature": "completed_stage_count",
+    "increase_mae": 0.014500010569892474,
+    "sd": 0.004153195259275406
+  },
+  {
+    "feature": "planned_transit_hours",
+    "increase_mae": 0.014091917065775483,
+    "sd": 0.014380273375876359
+  },
+  {
+    "feature": "customs_delay_hours",
+    "increase_mae": 0.013697763491338399,
+    "sd": 0.008206643440770114
+  },
+  {
+    "feature": "departure_day_of_week",
+    "increase_mae": 0.006020036793867156,
+    "sd": 0.010037444809406047
+  },
+  {
+    "feature": "observed_weather_severity",
+    "increase_mae": 0.005103377006851417,
+    "sd": 0.006137051369107396
+  },
+  {
+    "feature": "known_customs_processing_hours",
+    "increase_mae": 0.0019363949155319915,
+    "sd": 0.0016819818069899665
+  },
+  {
+    "feature": "customs_observed",
+    "increase_mae": 0.0002724038268560491,
+    "sd": 0.0005394882525342668
+  },
+  {
+    "feature": "departure_month",
+    "increase_mae": 0.0,
+    "sd": 0.0
+  },
+  {
+    "feature": "missing_event_count",
+    "increase_mae": 0.0,
+    "sd": 0.0
+  },
+  {
+    "feature": "elapsed_hours",
+    "increase_mae": -0.000110649882939029,
+    "sd": 0.015041462932488332
+  },
+  {
+    "feature": "port_processing_observed",
+    "increase_mae": -0.0005503671021312329,
+    "sd": 0.0008750170904688872
+  },
+  {
+    "feature": "port_arrival_observed",
+    "increase_mae": -0.0006216573926728586,
+    "sd": 0.0009783464800300846
+  },
+  {
+    "feature": "known_port_processing_hours",
+    "increase_mae": -0.0011486705285372878,
+    "sd": 0.004212649762930548
+  },
+  {
+    "feature": "route_id",
+    "increase_mae": -0.001941933717941957,
+    "sd": 0.014239592241081227
+  },
+  {
+    "feature": "snapshot_stage",
+    "increase_mae": -0.009478244312263406,
+    "sd": 0.008474202031460378
+  },
+  {
+    "feature": "remaining_planned_hours",
+    "increase_mae": -0.011338394624506875,
+    "sd": 0.01986603490191889
+  },
+  {
+    "feature": "final_destination",
+    "increase_mae": -0.011486489914631016,
+    "sd": 0.013743848595786038
+  },
+  {
+    "feature": "cumulative_added_delay_hours",
+    "increase_mae": -0.012660346506121911,
+    "sd": 0.01635727043102793
+  },
+  {
+    "feature": "actual_transit_hours_so_far",
+    "increase_mae": -0.02367905228210514,
+    "sd": 0.009442132858683597
+  },
+  {
+    "feature": "port_arrival_delay_hours",
+    "increase_mae": -0.07477149992265045,
+    "sd": 0.02600632638522412
+  }
+]

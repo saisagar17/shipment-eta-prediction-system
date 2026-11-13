@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-11-11T16:41:14.097609+00:00",
+  "finished_utc": "2026-11-11T16:41:14.777805+00:00",
+  "selection_file_sha256": "e104d342dfcdd79cfc4ab27f3a279727615264570e8b8b6299fda49d41d45b42",
+  "evaluated_selected_sha256": "0abb80a17ca886582b3fccdbd756f988cb587320a300b38d6fbc4591dc81f993",
+  "previously_inspected": true,
+  "selection_from": "validation"
+}

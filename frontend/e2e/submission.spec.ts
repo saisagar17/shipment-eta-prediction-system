@@ -1,0 +1,31 @@
+import { expect, test } from "@playwright/test";
+
+test("demo advances real estimates, explains a comparison, reveals delivery and opens frozen scores", async ({page,request}) => {
+  const meta = await (await request.get("/api/metadata")).json();
+  const example = meta.demonstrations[0];
+  await page.goto("/dashboard");
+  await page.getByRole("navigation").getByRole("link",{name:"Shipments"}).click();
+  await page.getByRole("link",{name: example.type+" · "+example.id}).click();
+  const stage = page.getByLabel("Reported prediction stage");
+  await expect(stage).toHaveValue("origin_departure");
+  await expect(page.getByRole("heading",{name:"Why This ETA?"})).toBeVisible();
+  await expect(page.getByText(/Actual final delivery/)).toHaveCount(0);
+  await page.getByLabel("Inspect forecast").selectOption("T1");
+  await expect(page.getByText(/Native SHAP/)).toBeVisible();
+  const next = await (await request.post("/api/shipments/"+example.id+"/advance",{params:{as_of:example.as_of}})).json();
+  const predicted = await (await request.post("/api/predict",{data:{shipment_id:example.id,as_of:next.as_of}})).json();
+  await page.getByRole("button",{name:"Advance to next report"}).click();
+  await expect(stage).toHaveValue(predicted.stage);
+  const expected = new Intl.DateTimeFormat("en-GB",{timeZone:"UTC",month:"short",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date(predicted.predicted_eta));
+  await expect(page.locator(".stat").filter({hasText:"Predicted delivery"})).toContainText(expected);
+  await page.getByRole("link",{name:/Inspect delay propagation/}).click();
+  await expect(page.getByRole("heading",{name:"Forecast revisions by report"})).toBeVisible();
+  await expect(page.getByRole("heading",{name:"Fleet logistics relationships"})).toBeVisible();
+  await page.getByRole("button",{name:"Reveal completed history"}).click();
+  await expect(page.getByText(/Actual final delivery/)).toBeVisible();
+  await page.getByRole("navigation").getByRole("link",{name:"Model Performance"}).click();
+  await expect(page.getByText(/87 snapshots/)).toBeVisible();
+  await page.getByLabel("Evaluation partition").selectOption("test");
+  await expect(page.getByText(/175 snapshots/)).toBeVisible();
+  await expect(page.getByText(/previously inspected/)).toBeVisible();
+});

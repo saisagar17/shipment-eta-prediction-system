@@ -1,0 +1,55 @@
+{
+  "approved_input_columns": [
+    "snapshot_stage",
+    "completed_stage_count",
+    "route_id",
+    "cargo_type",
+    "final_destination",
+    "planned_duration_hours",
+    "planned_transit_hours",
+    "remaining_planned_hours",
+    "elapsed_hours",
+    "time_since_last_event_hours",
+    "departure_day_of_week",
+    "departure_month",
+    "departure_delay_hours",
+    "port_arrival_delay_hours",
+    "port_processing_delay_hours",
+    "customs_delay_hours",
+    "current_stage_delay_hours",
+    "cumulative_added_delay_hours",
+    "cumulative_recovered_hours",
+    "observed_weather_severity",
+    "observed_congestion_level",
+    "known_port_processing_hours",
+    "known_customs_processing_hours",
+    "actual_transit_hours_so_far",
+    "port_arrival_observed",
+    "port_processing_observed",
+    "customs_observed",
+    "missing_event_count"
+  ],
+  "categorical_inputs": [
+    "snapshot_stage",
+    "route_id",
+    "cargo_type",
+    "final_destination"
+  ],
+  "trace_columns": [
+    "snapshot_id",
+    "shipment_id",
+    "voyage_id",
+    "prediction_timestamp"
+  ],
+  "target_columns": [
+    "target_final_delay_hours",
+    "target_actual_arrival",
+    "target_significant_delay"
+  ],
+  "null_encoding": "empty CSV field",
+  "categorical_encoding": "Choose and fit encoders only on the training partition.",
+  "split_join_key": "shipment_id",
+  "split_group": "voyage_id",
+  "split_cutoff": "All earlier final-delivery reports must precede every later scheduled and actual sailing.",
+  "event_time_zone": "UTC"
+}

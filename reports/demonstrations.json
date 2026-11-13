@@ -1,0 +1,17 @@
+[
+  {
+    "id": "SHP0218",
+    "type": "Delay amplification",
+    "as_of": "2025-07-04T06:34:52Z"
+  },
+  {
+    "id": "SHP0236",
+    "type": "Partial delay recovery",
+    "as_of": "2025-07-25T06:24:33Z"
+  },
+  {
+    "id": "SHP0238",
+    "type": "Missing intermediate tracking",
+    "as_of": "2025-07-25T06:24:33Z"
+  }
+]

@@ -1,0 +1,2530 @@
+{
+  "validation": {
+    "comparison": {
+      "Scheduled ETA": {
+        "n": 87,
+        "shipments": 25,
+        "voyages": 5,
+        "mae": 8.284747765006388,
+        "rmse": 10.404212020950508,
+        "median": 6.461944444444,
+        "p90": 17.564722222222,
+        "r2": -0.19075445299484217
+      },
+      "Current delay": {
+        "n": 87,
+        "shipments": 25,
+        "voyages": 5,
+        "mae": 4.82881226053638,
+        "rmse": 6.465777498304864,
+        "median": 3.6191666666670006,
+        "p90": 11.6566111111104,
+        "r2": 0.540119137046895
+      },
+      "Route median": {
+        "n": 87,
+        "shipments": 25,
+        "voyages": 5,
+        "mae": 7.835185185185128,
+        "rmse": 9.508963319022241,
+        "median": 6.138611111110999,
+        "p90": 13.883055555554998,
+        "r2": 0.005350265966516221
+      },
+      "Random Forest": {
+        "n": 87,
+        "shipments": 25,
+        "voyages": 5,
+        "mae": 5.649540843433486,
+        "rmse": 6.978494920603746,
+        "median": 4.952811966376231,
+        "p90": 11.354317953772767,
+        "r2": 0.4642929521201238
+      }
+    },
+    "subgroups": [
+      {
+        "category": "Stage",
+        "name": "origin_departure",
+        "n": 25,
+        "shipments": 25,
+        "voyages": 5,
+        "mae": 7.674181058057266,
+        "rmse": 9.005823376840786,
+        "median": 6.852345903186464,
+        "p90": 13.859355697999147,
+        "r2": 0.08331660412440989
+      },
+      {
+        "category": "Stage",
+        "name": "port_processing_complete",
+        "n": 20,
+        "shipments": 20,
+        "voyages": 5,
+        "mae": 5.292706956381766,
+        "rmse": 6.341272971460681,
+        "median": 5.312351740057899,
+        "p90": 9.469583845657485,
+        "r2": 0.5185682003349523
+      },
+      {
+        "category": "Stage",
+        "name": "customs_clearance_complete",
+        "n": 22,
+        "shipments": 22,
+        "voyages": 5,
+        "mae": 3.510350497625633,
+        "rmse": 4.328571045560205,
+        "median": 2.850383189061855,
+        "p90": 6.373356479380417,
+        "r2": 0.803512870095418
+      },
+      {
+        "category": "Stage",
+        "name": "port_arrival",
+        "n": 20,
+        "shipments": 20,
+        "voyages": 4,
+        "mae": 5.828683842594119,
+        "rmse": 7.045520641459389,
+        "median": 4.840299229338793,
+        "p90": 12.845762652814466,
+        "r2": 0.48046680276848386
+      },
+      {
+        "category": "Route",
+        "name": "R03",
+        "n": 12,
+        "shipments": 5,
+        "voyages": 1,
+        "mae": 6.251588666159144,
+        "rmse": 7.980278081561401,
+        "median": 6.078071397701686,
+        "p90": 14.173703189649098,
+        "r2": -0.878324061501937
+      },
+      {
+        "category": "Route",
+        "name": "R01",
+        "n": 15,
+        "shipments": 4,
+        "voyages": 1,
+        "mae": 5.794558346011047,
+        "rmse": 6.7338655000147964,
+        "median": 4.784983936050815,
+        "p90": 10.703965788223991,
+        "r2": 0.21896948217397583
+      },
+      {
+        "category": "Route",
+        "name": "R02",
+        "n": 21,
+        "shipments": 6,
+        "voyages": 1,
+        "mae": 6.37154477650789,
+        "rmse": 8.054181854757797,
+        "median": 5.206080524635462,
+        "p90": 13.602966233891499,
+        "r2": -1.3745689235720433
+      },
+      {
+        "category": "Route",
+        "name": "R05",
+        "n": 16,
+        "shipments": 4,
+        "voyages": 1,
+        "mae": 7.538159830694172,
+        "rmse": 8.22487778857622,
+        "median": 7.082424797183739,
+        "p90": 12.29116101078834,
+        "r2": -7.22744121380086
+      },
+      {
+        "category": "Route",
+        "name": "R04",
+        "n": 23,
+        "shipments": 6,
+        "voyages": 1,
+        "mae": 3.267809417255014,
+        "rmse": 3.888725251202157,
+        "median": 2.79235373820186,
+        "p90": 5.866433953596527,
+        "r2": -0.42421784590781564
+      },
+      {
+        "category": "Operational",
+        "name": "Tracking gap",
+        "n": 12,
+        "shipments": 10,
+        "voyages": 4,
+        "mae": 4.8392897185041335,
+        "rmse": 6.30959706214265,
+        "median": 4.461805221328438,
+        "p90": 9.119282387910657,
+        "r2": 0.3330455671304663
+      },
+      {
+        "category": "Operational",
+        "name": "No tracking gap",
+        "n": 75,
+        "shipments": 25,
+        "voyages": 5,
+        "mae": 5.779181023422181,
+        "rmse": 7.0796561752771,
+        "median": 5.102152296962203,
+        "p90": 11.404049534811195,
+        "r2": 0.44932636569630446
+      },
+      {
+        "category": "Operational",
+        "name": "Significant delay",
+        "n": 36,
+        "shipments": 11,
+        "voyages": 4,
+        "mae": 7.124317998832282,
+        "rmse": 8.550503317369783,
+        "median": 6.185664041040388,
+        "p90": 13.717241750501916,
+        "r2": -1.871937381408634
+      },
+      {
+        "category": "Operational",
+        "name": "Partial recovery",
+        "n": 45,
+        "shipments": 13,
+        "voyages": 3,
+        "mae": 5.013535991022832,
+        "rmse": 6.646842611567553,
+        "median": 3.4985826454945914,
+        "p90": 11.037840270401375,
+        "r2": 0.26785516249371233
+      },
+      {
+        "category": "Operational",
+        "name": "Amplification",
+        "n": 60,
+        "shipments": 18,
+        "voyages": 4,
+        "mae": 5.441869856212497,
+        "rmse": 6.99580564760022,
+        "median": 4.2593523161404905,
+        "p90": 11.411356170342499,
+        "r2": 0.1454278641519099
+      }
+    ],
+    "points": [
+      {
+        "snapshot_id": "SHP0176-0",
+        "shipment_id": "SHP0176",
+        "voyage_id": "VG036",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 5.072222222222,
+        "predicted": 2.997112836817473
+      },
+      {
+        "snapshot_id": "SHP0176-2",
+        "shipment_id": "SHP0176",
+        "voyage_id": "VG036",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 5.072222222222,
+        "predicted": 3.7207954517920165
+      },
+      {
+        "snapshot_id": "SHP0176-3",
+        "shipment_id": "SHP0176",
+        "voyage_id": "VG036",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 5.072222222222,
+        "predicted": 4.1901818225103415
+      },
+      {
+        "snapshot_id": "SHP0177-0",
+        "shipment_id": "SHP0177",
+        "voyage_id": "VG036",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 9.820277777778,
+        "predicted": 2.899815002073844
+      },
+      {
+        "snapshot_id": "SHP0177-2",
+        "shipment_id": "SHP0177",
+        "voyage_id": "VG036",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 9.820277777778,
+        "predicted": 4.038752687922459
+      },
+      {
+        "snapshot_id": "SHP0178-0",
+        "shipment_id": "SHP0178",
+        "voyage_id": "VG036",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 17.564722222222,
+        "predicted": 2.951944763978605
+      },
+      {
+        "snapshot_id": "SHP0178-2",
+        "shipment_id": "SHP0178",
+        "voyage_id": "VG036",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 17.564722222222,
+        "predicted": 2.5426599143135946
+      },
+      {
+        "snapshot_id": "SHP0178-3",
+        "shipment_id": "SHP0178",
+        "voyage_id": "VG036",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 17.564722222222,
+        "predicted": 11.190104516674166
+      },
+      {
+        "snapshot_id": "SHP0179-0",
+        "shipment_id": "SHP0179",
+        "voyage_id": "VG036",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 1.616666666667,
+        "predicted": 2.997112836817473
+      },
+      {
+        "snapshot_id": "SHP0179-2",
+        "shipment_id": "SHP0179",
+        "voyage_id": "VG036",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 1.616666666667,
+        "predicted": 2.588982694924917
+      },
+      {
+        "snapshot_id": "SHP0180-0",
+        "shipment_id": "SHP0180",
+        "voyage_id": "VG036",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 13.335555555556,
+        "predicted": 3.113520783255574
+      },
+      {
+        "snapshot_id": "SHP0180-2",
+        "shipment_id": "SHP0180",
+        "voyage_id": "VG036",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 13.335555555556,
+        "predicted": 3.9113104251605866
+      },
+      {
+        "snapshot_id": "SHP0181-0",
+        "shipment_id": "SHP0181",
+        "voyage_id": "VG037",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -2.385555555556,
+        "predicted": 0.8410516844022992
+      },
+      {
+        "snapshot_id": "SHP0181-1",
+        "shipment_id": "SHP0181",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -2.385555555556,
+        "predicted": -0.0013280269569171921
+      },
+      {
+        "snapshot_id": "SHP0181-2",
+        "shipment_id": "SHP0181",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -2.385555555556,
+        "predicted": -0.5557531250142781
+      },
+      {
+        "snapshot_id": "SHP0181-3",
+        "shipment_id": "SHP0181",
+        "voyage_id": "VG037",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -2.385555555556,
+        "predicted": -1.8432700158060524
+      },
+      {
+        "snapshot_id": "SHP0182-0",
+        "shipment_id": "SHP0182",
+        "voyage_id": "VG037",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -3.798611111111,
+        "predicted": 0.8370072399578558
+      },
+      {
+        "snapshot_id": "SHP0182-1",
+        "shipment_id": "SHP0182",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -3.798611111111,
+        "predicted": -0.04644376769766154
+      },
+      {
+        "snapshot_id": "SHP0182-2",
+        "shipment_id": "SHP0182",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -3.798611111111,
+        "predicted": 0.9863728249398146
+      },
+      {
+        "snapshot_id": "SHP0182-3",
+        "shipment_id": "SHP0182",
+        "voyage_id": "VG037",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -3.798611111111,
+        "predicted": 0.7954419622071556
+      },
+      {
+        "snapshot_id": "SHP0183-0",
+        "shipment_id": "SHP0183",
+        "voyage_id": "VG037",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -5.342777777778,
+        "predicted": 2.0085239755789592
+      },
+      {
+        "snapshot_id": "SHP0183-1",
+        "shipment_id": "SHP0183",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -5.342777777778,
+        "predicted": 0.9906677746452013
+      },
+      {
+        "snapshot_id": "SHP0183-3",
+        "shipment_id": "SHP0183",
+        "voyage_id": "VG037",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -5.342777777778,
+        "predicted": -0.3899658114017692
+      },
+      {
+        "snapshot_id": "SHP0184-0",
+        "shipment_id": "SHP0184",
+        "voyage_id": "VG037",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 13.375,
+        "predicted": 2.120145208304092
+      },
+      {
+        "snapshot_id": "SHP0184-1",
+        "shipment_id": "SHP0184",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 13.375,
+        "predicted": 0.5551314218382195
+      },
+      {
+        "snapshot_id": "SHP0184-2",
+        "shipment_id": "SHP0184",
+        "voyage_id": "VG037",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 13.375,
+        "predicted": 3.497367716983882
+      },
+      {
+        "snapshot_id": "SHP0184-3",
+        "shipment_id": "SHP0184",
+        "voyage_id": "VG037",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 13.375,
+        "predicted": 4.796285177564691
+      },
+      {
+        "snapshot_id": "SHP0185-0",
+        "shipment_id": "SHP0185",
+        "voyage_id": "VG038",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 15.186944444444,
+        "predicted": 4.224533766108502
+      },
+      {
+        "snapshot_id": "SHP0185-1",
+        "shipment_id": "SHP0185",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 15.186944444444,
+        "predicted": 10.639038288443665
+      },
+      {
+        "snapshot_id": "SHP0185-3",
+        "shipment_id": "SHP0185",
+        "voyage_id": "VG038",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 15.186944444444,
+        "predicted": 21.54894988831768
+      },
+      {
+        "snapshot_id": "SHP0186-0",
+        "shipment_id": "SHP0186",
+        "voyage_id": "VG038",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 24.470555555556,
+        "predicted": 4.224533766108502
+      },
+      {
+        "snapshot_id": "SHP0186-1",
+        "shipment_id": "SHP0186",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 24.470555555556,
+        "predicted": 10.639038288443665
+      },
+      {
+        "snapshot_id": "SHP0186-2",
+        "shipment_id": "SHP0186",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 24.470555555556,
+        "predicted": 21.597708074494907
+      },
+      {
+        "snapshot_id": "SHP0186-3",
+        "shipment_id": "SHP0186",
+        "voyage_id": "VG038",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 24.470555555556,
+        "predicted": 22.467797522246244
+      },
+      {
+        "snapshot_id": "SHP0187-0",
+        "shipment_id": "SHP0187",
+        "voyage_id": "VG038",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 15.118333333333,
+        "predicted": 4.03020666822104
+      },
+      {
+        "snapshot_id": "SHP0187-1",
+        "shipment_id": "SHP0187",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 15.118333333333,
+        "predicted": 9.912252808697538
+      },
+      {
+        "snapshot_id": "SHP0187-3",
+        "shipment_id": "SHP0187",
+        "voyage_id": "VG038",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 15.118333333333,
+        "predicted": 16.14020741697734
+      },
+      {
+        "snapshot_id": "SHP0188-0",
+        "shipment_id": "SHP0188",
+        "voyage_id": "VG038",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 17.8275,
+        "predicted": 4.224533766108502
+      },
+      {
+        "snapshot_id": "SHP0188-1",
+        "shipment_id": "SHP0188",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 17.8275,
+        "predicted": 10.639038288443665
+      },
+      {
+        "snapshot_id": "SHP0188-3",
+        "shipment_id": "SHP0188",
+        "voyage_id": "VG038",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 17.8275,
+        "predicted": 21.798298476280646
+      },
+      {
+        "snapshot_id": "SHP0189-0",
+        "shipment_id": "SHP0189",
+        "voyage_id": "VG038",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 9.678333333333,
+        "predicted": 4.568003436771819
+      },
+      {
+        "snapshot_id": "SHP0189-1",
+        "shipment_id": "SHP0189",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 9.678333333333,
+        "predicted": 10.221743038507134
+      },
+      {
+        "snapshot_id": "SHP0189-2",
+        "shipment_id": "SHP0189",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 9.678333333333,
+        "predicted": 15.200884516486596
+      },
+      {
+        "snapshot_id": "SHP0189-3",
+        "shipment_id": "SHP0189",
+        "voyage_id": "VG038",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 9.678333333333,
+        "predicted": 15.37378525968245
+      },
+      {
+        "snapshot_id": "SHP0190-0",
+        "shipment_id": "SHP0190",
+        "voyage_id": "VG038",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 10.511388888889,
+        "predicted": 3.727790914589211
+      },
+      {
+        "snapshot_id": "SHP0190-1",
+        "shipment_id": "SHP0190",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 10.511388888889,
+        "predicted": 9.75082955187599
+      },
+      {
+        "snapshot_id": "SHP0190-2",
+        "shipment_id": "SHP0190",
+        "voyage_id": "VG038",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 10.511388888889,
+        "predicted": 15.613541185851203
+      },
+      {
+        "snapshot_id": "SHP0190-3",
+        "shipment_id": "SHP0190",
+        "voyage_id": "VG038",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 10.511388888889,
+        "predicted": 11.892002331780894
+      },
+      {
+        "snapshot_id": "SHP0191-0",
+        "shipment_id": "SHP0191",
+        "voyage_id": "VG039",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -12.091666666667,
+        "predicted": 1.9386153407372426
+      },
+      {
+        "snapshot_id": "SHP0191-1",
+        "shipment_id": "SHP0191",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -12.091666666667,
+        "predicted": 0.9871426580216283
+      },
+      {
+        "snapshot_id": "SHP0191-2",
+        "shipment_id": "SHP0191",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -12.091666666667,
+        "predicted": -2.926921602209486
+      },
+      {
+        "snapshot_id": "SHP0191-3",
+        "shipment_id": "SHP0191",
+        "voyage_id": "VG039",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -12.091666666667,
+        "predicted": -3.357804894026466
+      },
+      {
+        "snapshot_id": "SHP0192-0",
+        "shipment_id": "SHP0192",
+        "voyage_id": "VG039",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -6.1325,
+        "predicted": 2.62267438039955
+      },
+      {
+        "snapshot_id": "SHP0192-1",
+        "shipment_id": "SHP0192",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -6.1325,
+        "predicted": 1.1800036911810137
+      },
+      {
+        "snapshot_id": "SHP0192-2",
+        "shipment_id": "SHP0192",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -6.1325,
+        "predicted": -0.44502564193868754
+      },
+      {
+        "snapshot_id": "SHP0192-3",
+        "shipment_id": "SHP0192",
+        "voyage_id": "VG039",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -6.1325,
+        "predicted": -3.5169840725265646
+      },
+      {
+        "snapshot_id": "SHP0193-0",
+        "shipment_id": "SHP0193",
+        "voyage_id": "VG039",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -8.915277777778,
+        "predicted": 2.58823491911005
+      },
+      {
+        "snapshot_id": "SHP0193-1",
+        "shipment_id": "SHP0193",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -8.915277777778,
+        "predicted": 0.6397913457996642
+      },
+      {
+        "snapshot_id": "SHP0193-2",
+        "shipment_id": "SHP0193",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -8.915277777778,
+        "predicted": -2.9025890247962485
+      },
+      {
+        "snapshot_id": "SHP0193-3",
+        "shipment_id": "SHP0193",
+        "voyage_id": "VG039",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -8.915277777778,
+        "predicted": -3.6748055319996227
+      },
+      {
+        "snapshot_id": "SHP0194-0",
+        "shipment_id": "SHP0194",
+        "voyage_id": "VG039",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -4.558333333333,
+        "predicted": 2.2940125698534644
+      },
+      {
+        "snapshot_id": "SHP0194-1",
+        "shipment_id": "SHP0194",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -4.558333333333,
+        "predicted": 0.5743589693442509
+      },
+      {
+        "snapshot_id": "SHP0194-2",
+        "shipment_id": "SHP0194",
+        "voyage_id": "VG039",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -4.558333333333,
+        "predicted": -0.7081740442723123
+      },
+      {
+        "snapshot_id": "SHP0194-3",
+        "shipment_id": "SHP0194",
+        "voyage_id": "VG039",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -4.558333333333,
+        "predicted": -1.4730828826827247
+      },
+      {
+        "snapshot_id": "SHP0195-0",
+        "shipment_id": "SHP0195",
+        "voyage_id": "VG040",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.303055555556,
+        "predicted": 2.657555107743741
+      },
+      {
+        "snapshot_id": "SHP0195-1",
+        "shipment_id": "SHP0195",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -0.303055555556,
+        "predicted": 2.8428628695045375
+      },
+      {
+        "snapshot_id": "SHP0195-2",
+        "shipment_id": "SHP0195",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.303055555556,
+        "predicted": 1.0063989676610308
+      },
+      {
+        "snapshot_id": "SHP0195-3",
+        "shipment_id": "SHP0195",
+        "voyage_id": "VG040",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -0.303055555556,
+        "predicted": 0.2612567734888464
+      },
+      {
+        "snapshot_id": "SHP0196-0",
+        "shipment_id": "SHP0196",
+        "voyage_id": "VG040",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -1.572777777778,
+        "predicted": 3.722101437376247
+      },
+      {
+        "snapshot_id": "SHP0196-1",
+        "shipment_id": "SHP0196",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -1.572777777778,
+        "predicted": 7.939135718093213
+      },
+      {
+        "snapshot_id": "SHP0196-2",
+        "shipment_id": "SHP0196",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -1.572777777778,
+        "predicted": 5.5105774939457595
+      },
+      {
+        "snapshot_id": "SHP0196-3",
+        "shipment_id": "SHP0196",
+        "voyage_id": "VG040",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -1.572777777778,
+        "predicted": 0.9917488253156844
+      },
+      {
+        "snapshot_id": "SHP0197-0",
+        "shipment_id": "SHP0197",
+        "voyage_id": "VG040",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -1.316111111111,
+        "predicted": 2.6024577069500894
+      },
+      {
+        "snapshot_id": "SHP0197-1",
+        "shipment_id": "SHP0197",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -1.316111111111,
+        "predicted": 2.4644852725027393
+      },
+      {
+        "snapshot_id": "SHP0197-3",
+        "shipment_id": "SHP0197",
+        "voyage_id": "VG040",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -1.316111111111,
+        "predicted": 0.639642108656959
+      },
+      {
+        "snapshot_id": "SHP0198-0",
+        "shipment_id": "SHP0198",
+        "voyage_id": "VG040",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 5.421944444444,
+        "predicted": 2.6463939966326264
+      },
+      {
+        "snapshot_id": "SHP0198-1",
+        "shipment_id": "SHP0198",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 5.421944444444,
+        "predicted": 2.9383005635080592
+      },
+      {
+        "snapshot_id": "SHP0198-2",
+        "shipment_id": "SHP0198",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 5.421944444444,
+        "predicted": 2.6740999882240106
+      },
+      {
+        "snapshot_id": "SHP0198-3",
+        "shipment_id": "SHP0198",
+        "voyage_id": "VG040",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 5.421944444444,
+        "predicted": 0.5820856366656354
+      },
+      {
+        "snapshot_id": "SHP0199-0",
+        "shipment_id": "SHP0199",
+        "voyage_id": "VG040",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 6.461944444444,
+        "predicted": 2.9633617989494083
+      },
+      {
+        "snapshot_id": "SHP0199-1",
+        "shipment_id": "SHP0199",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 6.461944444444,
+        "predicted": 4.286747453815927
+      },
+      {
+        "snapshot_id": "SHP0199-2",
+        "shipment_id": "SHP0199",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 6.461944444444,
+        "predicted": 0.45262180623690396
+      },
+      {
+        "snapshot_id": "SHP0199-3",
+        "shipment_id": "SHP0199",
+        "voyage_id": "VG040",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 6.461944444444,
+        "predicted": 6.36083478274159
+      },
+      {
+        "snapshot_id": "SHP0200-0",
+        "shipment_id": "SHP0200",
+        "voyage_id": "VG040",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.058611111111,
+        "predicted": 2.73374262709086
+      },
+      {
+        "snapshot_id": "SHP0200-1",
+        "shipment_id": "SHP0200",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -0.058611111111,
+        "predicted": 2.971078418448294
+      },
+      {
+        "snapshot_id": "SHP0200-2",
+        "shipment_id": "SHP0200",
+        "voyage_id": "VG040",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.058611111111,
+        "predicted": 1.3889387249623477
+      },
+      {
+        "snapshot_id": "SHP0200-3",
+        "shipment_id": "SHP0200",
+        "voyage_id": "VG040",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -0.058611111111,
+        "predicted": 1.1104139052341369
+      }
+    ]
+  },
+  "test": {
+    "comparison": {
+      "Scheduled ETA": {
+        "n": 175,
+        "shipments": 50,
+        "voyages": 10,
+        "mae": 4.045558730158714,
+        "rmse": 6.312591521609351,
+        "median": 2.446666666667,
+        "p90": 12.021111111111,
+        "r2": -0.19165829916261568
+      },
+      "Current delay": {
+        "n": 175,
+        "shipments": 50,
+        "voyages": 10,
+        "mae": 3.6192777777777714,
+        "rmse": 5.305989600586713,
+        "median": 2.545277777778,
+        "p90": 8.387722222222,
+        "r2": 0.15808323926299406
+      },
+      "Route median": {
+        "n": 175,
+        "shipments": 50,
+        "voyages": 10,
+        "mae": 4.343434920634907,
+        "rmse": 6.238772858979088,
+        "median": 2.9351388888890004,
+        "p90": 10.181111111111,
+        "r2": -0.16395104572432162
+      },
+      "Random Forest": {
+        "n": 175,
+        "shipments": 50,
+        "voyages": 10,
+        "mae": 3.9755818661567153,
+        "rmse": 5.392206089056351,
+        "median": 3.1061220834230205,
+        "p90": 7.83855149790513,
+        "r2": 0.13050051012810815
+      }
+    },
+    "subgroups": [
+      {
+        "category": "Stage",
+        "name": "origin_departure",
+        "n": 50,
+        "shipments": 50,
+        "voyages": 10,
+        "mae": 4.631409819366248,
+        "rmse": 6.291258554804448,
+        "median": 3.6326107980199858,
+        "p90": 9.144607500197655,
+        "r2": -0.1768082188321991
+      },
+      {
+        "category": "Stage",
+        "name": "port_arrival",
+        "n": 36,
+        "shipments": 36,
+        "voyages": 7,
+        "mae": 4.883785695570274,
+        "rmse": 6.450498739093574,
+        "median": 3.8371772526660046,
+        "p90": 8.75798803403825,
+        "r2": -0.3904242975796519
+      },
+      {
+        "category": "Stage",
+        "name": "port_processing_complete",
+        "n": 44,
+        "shipments": 44,
+        "voyages": 10,
+        "mae": 4.157244130614931,
+        "rmse": 5.366851079937498,
+        "median": 3.3264186469097083,
+        "p90": 8.220784825306007,
+        "r2": 0.10837439322942799
+      },
+      {
+        "category": "Stage",
+        "name": "customs_clearance_complete",
+        "n": 45,
+        "shipments": 45,
+        "voyages": 10,
+        "mae": 2.342695751589466,
+        "rmse": 2.7649626178472917,
+        "median": 2.2605489827079213,
+        "p90": 4.271015627904517,
+        "r2": 0.7933303406161093
+      },
+      {
+        "category": "Route",
+        "name": "R05",
+        "n": 34,
+        "shipments": 9,
+        "voyages": 2,
+        "mae": 3.5510138991165903,
+        "rmse": 4.1034798836953446,
+        "median": 3.4398287389391564,
+        "p90": 6.413880893246519,
+        "r2": -1.5522550013846201
+      },
+      {
+        "category": "Route",
+        "name": "R03",
+        "n": 40,
+        "shipments": 12,
+        "voyages": 2,
+        "mae": 3.25869607075673,
+        "rmse": 3.9187350745635077,
+        "median": 2.780716645084123,
+        "p90": 6.610439565029,
+        "r2": -1.4261277772739476
+      },
+      {
+        "category": "Route",
+        "name": "R04",
+        "n": 38,
+        "shipments": 10,
+        "voyages": 2,
+        "mae": 2.93981811642451,
+        "rmse": 3.5217111470106603,
+        "median": 2.57468746915137,
+        "p90": 5.602040585127818,
+        "r2": -0.9501342173839542
+      },
+      {
+        "category": "Route",
+        "name": "R01",
+        "n": 40,
+        "shipments": 11,
+        "voyages": 2,
+        "mae": 5.684812994881014,
+        "rmse": 7.91292074342072,
+        "median": 3.375148197643809,
+        "p90": 14.969693372790454,
+        "r2": -0.23611314477298717
+      },
+      {
+        "category": "Route",
+        "name": "R02",
+        "n": 23,
+        "shipments": 8,
+        "voyages": 2,
+        "mae": 4.588647954687827,
+        "rmse": 6.343927212681542,
+        "median": 3.2230519934371076,
+        "p90": 12.642555291159793,
+        "r2": 0.25188574942932407
+      },
+      {
+        "category": "Operational",
+        "name": "Tracking gap",
+        "n": 31,
+        "shipments": 18,
+        "voyages": 7,
+        "mae": 3.745120275227596,
+        "rmse": 4.745051231174047,
+        "median": 3.4297853003823096,
+        "p90": 6.904298561218887,
+        "r2": 0.5111534601091856
+      },
+      {
+        "category": "Operational",
+        "name": "No tracking gap",
+        "n": 144,
+        "shipments": 50,
+        "voyages": 10,
+        "mae": 4.025195125315068,
+        "rmse": 5.5216111350961805,
+        "median": 3.0749421980584746,
+        "p90": 7.923312969645261,
+        "r2": -0.0024374569190781514
+      },
+      {
+        "category": "Operational",
+        "name": "Significant delay",
+        "n": 35,
+        "shipments": 10,
+        "voyages": 5,
+        "mae": 8.208587551253066,
+        "rmse": 9.745787971383933,
+        "median": 7.328057602066265,
+        "p90": 15.400760288009312,
+        "r2": -3.277756063160103
+      },
+      {
+        "category": "Operational",
+        "name": "Partial recovery",
+        "n": 131,
+        "shipments": 38,
+        "voyages": 10,
+        "mae": 3.15691789172638,
+        "rmse": 4.182019952674672,
+        "median": 2.535582212731631,
+        "p90": 6.74543266781494,
+        "r2": -0.11583889026421423
+      },
+      {
+        "category": "Operational",
+        "name": "Amplification",
+        "n": 152,
+        "shipments": 44,
+        "voyages": 10,
+        "mae": 4.009374799827986,
+        "rmse": 5.494536035086539,
+        "median": 3.053714628929886,
+        "p90": 7.775350224536839,
+        "r2": 0.1257416369895561
+      }
+    ],
+    "points": [
+      {
+        "snapshot_id": "SHP0201-0",
+        "shipment_id": "SHP0201",
+        "voyage_id": "VG041",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -2.634166666667,
+        "predicted": 1.2230568242387054
+      },
+      {
+        "snapshot_id": "SHP0201-1",
+        "shipment_id": "SHP0201",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -2.634166666667,
+        "predicted": 4.173139313020525
+      },
+      {
+        "snapshot_id": "SHP0201-2",
+        "shipment_id": "SHP0201",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -2.634166666667,
+        "predicted": 3.0042101078916272
+      },
+      {
+        "snapshot_id": "SHP0201-3",
+        "shipment_id": "SHP0201",
+        "voyage_id": "VG041",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -2.634166666667,
+        "predicted": -1.3821131009690562
+      },
+      {
+        "snapshot_id": "SHP0202-0",
+        "shipment_id": "SHP0202",
+        "voyage_id": "VG041",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -2.424722222222,
+        "predicted": 1.1903787686831482
+      },
+      {
+        "snapshot_id": "SHP0202-1",
+        "shipment_id": "SHP0202",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -2.424722222222,
+        "predicted": 4.173139313020525
+      },
+      {
+        "snapshot_id": "SHP0202-3",
+        "shipment_id": "SHP0202",
+        "voyage_id": "VG041",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -2.424722222222,
+        "predicted": 1.9029417706326814
+      },
+      {
+        "snapshot_id": "SHP0203-0",
+        "shipment_id": "SHP0203",
+        "voyage_id": "VG041",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -1.48,
+        "predicted": 0.906112088975264
+      },
+      {
+        "snapshot_id": "SHP0203-1",
+        "shipment_id": "SHP0203",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -1.48,
+        "predicted": 4.3283036443209575
+      },
+      {
+        "snapshot_id": "SHP0203-2",
+        "shipment_id": "SHP0203",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -1.48,
+        "predicted": 1.2425770177880064
+      },
+      {
+        "snapshot_id": "SHP0203-3",
+        "shipment_id": "SHP0203",
+        "voyage_id": "VG041",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -1.48,
+        "predicted": 0.1139541299437385
+      },
+      {
+        "snapshot_id": "SHP0204-0",
+        "shipment_id": "SHP0204",
+        "voyage_id": "VG041",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -4.366111111111,
+        "predicted": 1.4861124703008146
+      },
+      {
+        "snapshot_id": "SHP0204-1",
+        "shipment_id": "SHP0204",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -4.366111111111,
+        "predicted": 3.5773944529007253
+      },
+      {
+        "snapshot_id": "SHP0204-2",
+        "shipment_id": "SHP0204",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -4.366111111111,
+        "predicted": -0.5385266573846798
+      },
+      {
+        "snapshot_id": "SHP0204-3",
+        "shipment_id": "SHP0204",
+        "voyage_id": "VG041",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -4.366111111111,
+        "predicted": -2.0780798202557373
+      },
+      {
+        "snapshot_id": "SHP0205-0",
+        "shipment_id": "SHP0205",
+        "voyage_id": "VG041",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.406388888889,
+        "predicted": 0.7067241646617946
+      },
+      {
+        "snapshot_id": "SHP0205-1",
+        "shipment_id": "SHP0205",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.406388888889,
+        "predicted": 4.191904441938676
+      },
+      {
+        "snapshot_id": "SHP0205-2",
+        "shipment_id": "SHP0205",
+        "voyage_id": "VG041",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.406388888889,
+        "predicted": 3.0918521687315326
+      },
+      {
+        "snapshot_id": "SHP0205-3",
+        "shipment_id": "SHP0205",
+        "voyage_id": "VG041",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.406388888889,
+        "predicted": 3.8780407045554277
+      },
+      {
+        "snapshot_id": "SHP0206-0",
+        "shipment_id": "SHP0206",
+        "voyage_id": "VG042",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.954444444444,
+        "predicted": 2.9797392567920222
+      },
+      {
+        "snapshot_id": "SHP0206-2",
+        "shipment_id": "SHP0206",
+        "voyage_id": "VG042",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.954444444444,
+        "predicted": 2.4753408559383097
+      },
+      {
+        "snapshot_id": "SHP0206-3",
+        "shipment_id": "SHP0206",
+        "voyage_id": "VG042",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -0.954444444444,
+        "predicted": 0.5699281390731464
+      },
+      {
+        "snapshot_id": "SHP0207-0",
+        "shipment_id": "SHP0207",
+        "voyage_id": "VG042",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 2.370833333333,
+        "predicted": 2.94200721107443
+      },
+      {
+        "snapshot_id": "SHP0207-2",
+        "shipment_id": "SHP0207",
+        "voyage_id": "VG042",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 2.370833333333,
+        "predicted": 1.7948162262174927
+      },
+      {
+        "snapshot_id": "SHP0207-3",
+        "shipment_id": "SHP0207",
+        "voyage_id": "VG042",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 2.370833333333,
+        "predicted": 0.5422774249671243
+      },
+      {
+        "snapshot_id": "SHP0208-0",
+        "shipment_id": "SHP0208",
+        "voyage_id": "VG042",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -1.822777777778,
+        "predicted": 4.476686103812653
+      },
+      {
+        "snapshot_id": "SHP0208-2",
+        "shipment_id": "SHP0208",
+        "voyage_id": "VG042",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -1.822777777778,
+        "predicted": 4.16290012122821
+      },
+      {
+        "snapshot_id": "SHP0208-3",
+        "shipment_id": "SHP0208",
+        "voyage_id": "VG042",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -1.822777777778,
+        "predicted": 2.3632653027012687
+      },
+      {
+        "snapshot_id": "SHP0209-0",
+        "shipment_id": "SHP0209",
+        "voyage_id": "VG042",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -2.235833333333,
+        "predicted": 4.5095993344819405
+      },
+      {
+        "snapshot_id": "SHP0209-2",
+        "shipment_id": "SHP0209",
+        "voyage_id": "VG042",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -2.235833333333,
+        "predicted": 4.359606998053118
+      },
+      {
+        "snapshot_id": "SHP0209-3",
+        "shipment_id": "SHP0209",
+        "voyage_id": "VG042",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -2.235833333333,
+        "predicted": 1.8396636583767088
+      },
+      {
+        "snapshot_id": "SHP0210-0",
+        "shipment_id": "SHP0210",
+        "voyage_id": "VG042",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 1.546944444444,
+        "predicted": 4.660959231345758
+      },
+      {
+        "snapshot_id": "SHP0210-2",
+        "shipment_id": "SHP0210",
+        "voyage_id": "VG042",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 1.546944444444,
+        "predicted": 4.260028728228754
+      },
+      {
+        "snapshot_id": "SHP0210-3",
+        "shipment_id": "SHP0210",
+        "voyage_id": "VG042",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 1.546944444444,
+        "predicted": 4.082526657175631
+      },
+      {
+        "snapshot_id": "SHP0211-0",
+        "shipment_id": "SHP0211",
+        "voyage_id": "VG042",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -3.320833333333,
+        "predicted": 5.383196774868851
+      },
+      {
+        "snapshot_id": "SHP0211-2",
+        "shipment_id": "SHP0211",
+        "voyage_id": "VG042",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -3.320833333333,
+        "predicted": 2.284539747425999
+      },
+      {
+        "snapshot_id": "SHP0211-3",
+        "shipment_id": "SHP0211",
+        "voyage_id": "VG042",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -3.320833333333,
+        "predicted": -2.204552415422566
+      },
+      {
+        "snapshot_id": "SHP0212-0",
+        "shipment_id": "SHP0212",
+        "voyage_id": "VG043",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.118055555556,
+        "predicted": 5.408827446440102
+      },
+      {
+        "snapshot_id": "SHP0212-1",
+        "shipment_id": "SHP0212",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -0.118055555556,
+        "predicted": 4.894347402545841
+      },
+      {
+        "snapshot_id": "SHP0212-2",
+        "shipment_id": "SHP0212",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.118055555556,
+        "predicted": 4.3411595118678905
+      },
+      {
+        "snapshot_id": "SHP0213-0",
+        "shipment_id": "SHP0213",
+        "voyage_id": "VG043",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.35,
+        "predicted": 5.279980462085709
+      },
+      {
+        "snapshot_id": "SHP0213-1",
+        "shipment_id": "SHP0213",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.35,
+        "predicted": 7.196953247863299
+      },
+      {
+        "snapshot_id": "SHP0213-2",
+        "shipment_id": "SHP0213",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.35,
+        "predicted": 5.061437388093839
+      },
+      {
+        "snapshot_id": "SHP0213-3",
+        "shipment_id": "SHP0213",
+        "voyage_id": "VG043",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.35,
+        "predicted": 2.484135615867518
+      },
+      {
+        "snapshot_id": "SHP0214-0",
+        "shipment_id": "SHP0214",
+        "voyage_id": "VG043",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 2.651111111111,
+        "predicted": 5.852316102481397
+      },
+      {
+        "snapshot_id": "SHP0214-1",
+        "shipment_id": "SHP0214",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 2.651111111111,
+        "predicted": 4.906295236592913
+      },
+      {
+        "snapshot_id": "SHP0214-2",
+        "shipment_id": "SHP0214",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 2.651111111111,
+        "predicted": 2.97878999295578
+      },
+      {
+        "snapshot_id": "SHP0215-0",
+        "shipment_id": "SHP0215",
+        "voyage_id": "VG043",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.117222222222,
+        "predicted": 5.852316102481397
+      },
+      {
+        "snapshot_id": "SHP0215-1",
+        "shipment_id": "SHP0215",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -0.117222222222,
+        "predicted": 4.9234205209844415
+      },
+      {
+        "snapshot_id": "SHP0215-2",
+        "shipment_id": "SHP0215",
+        "voyage_id": "VG043",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.117222222222,
+        "predicted": 3.819264166741156
+      },
+      {
+        "snapshot_id": "SHP0215-3",
+        "shipment_id": "SHP0215",
+        "voyage_id": "VG043",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -0.117222222222,
+        "predicted": 0.895842058290355
+      },
+      {
+        "snapshot_id": "SHP0216-0",
+        "shipment_id": "SHP0216",
+        "voyage_id": "VG044",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.250833333333,
+        "predicted": 2.045648279268062
+      },
+      {
+        "snapshot_id": "SHP0216-1",
+        "shipment_id": "SHP0216",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.250833333333,
+        "predicted": 1.6282999210815499
+      },
+      {
+        "snapshot_id": "SHP0216-2",
+        "shipment_id": "SHP0216",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.250833333333,
+        "predicted": 2.366398058019755
+      },
+      {
+        "snapshot_id": "SHP0216-3",
+        "shipment_id": "SHP0216",
+        "voyage_id": "VG044",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.250833333333,
+        "predicted": 2.511382316040921
+      },
+      {
+        "snapshot_id": "SHP0217-0",
+        "shipment_id": "SHP0217",
+        "voyage_id": "VG044",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 8.988333333333,
+        "predicted": 2.045648279268062
+      },
+      {
+        "snapshot_id": "SHP0217-1",
+        "shipment_id": "SHP0217",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 8.988333333333,
+        "predicted": 1.6602757312667342
+      },
+      {
+        "snapshot_id": "SHP0217-3",
+        "shipment_id": "SHP0217",
+        "voyage_id": "VG044",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 8.988333333333,
+        "predicted": 5.4427377763904845
+      },
+      {
+        "snapshot_id": "SHP0218-0",
+        "shipment_id": "SHP0218",
+        "voyage_id": "VG044",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 20.265277777778,
+        "predicted": 0.878627064618962
+      },
+      {
+        "snapshot_id": "SHP0218-1",
+        "shipment_id": "SHP0218",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 20.265277777778,
+        "predicted": 0.8462240267878933
+      },
+      {
+        "snapshot_id": "SHP0218-2",
+        "shipment_id": "SHP0218",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 20.265277777778,
+        "predicted": 4.5196639575936
+      },
+      {
+        "snapshot_id": "SHP0218-3",
+        "shipment_id": "SHP0218",
+        "voyage_id": "VG044",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 20.265277777778,
+        "predicted": 14.662017130466047
+      },
+      {
+        "snapshot_id": "SHP0219-0",
+        "shipment_id": "SHP0219",
+        "voyage_id": "VG044",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 13.289444444444,
+        "predicted": 0.9241646869734597
+      },
+      {
+        "snapshot_id": "SHP0219-1",
+        "shipment_id": "SHP0219",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 13.289444444444,
+        "predicted": 0.7647745237523529
+      },
+      {
+        "snapshot_id": "SHP0219-2",
+        "shipment_id": "SHP0219",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 13.289444444444,
+        "predicted": 2.030846249083114
+      },
+      {
+        "snapshot_id": "SHP0219-3",
+        "shipment_id": "SHP0219",
+        "voyage_id": "VG044",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 13.289444444444,
+        "predicted": 14.498750440651241
+      },
+      {
+        "snapshot_id": "SHP0220-0",
+        "shipment_id": "SHP0220",
+        "voyage_id": "VG044",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 6.444166666667,
+        "predicted": 1.5613791483563975
+      },
+      {
+        "snapshot_id": "SHP0220-1",
+        "shipment_id": "SHP0220",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 6.444166666667,
+        "predicted": 1.0952105748799488
+      },
+      {
+        "snapshot_id": "SHP0220-2",
+        "shipment_id": "SHP0220",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 6.444166666667,
+        "predicted": 2.6665800985999795
+      },
+      {
+        "snapshot_id": "SHP0220-3",
+        "shipment_id": "SHP0220",
+        "voyage_id": "VG044",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 6.444166666667,
+        "predicted": 5.670599877808632
+      },
+      {
+        "snapshot_id": "SHP0221-0",
+        "shipment_id": "SHP0221",
+        "voyage_id": "VG044",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 3.413333333333,
+        "predicted": 1.511699045425438
+      },
+      {
+        "snapshot_id": "SHP0221-1",
+        "shipment_id": "SHP0221",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 3.413333333333,
+        "predicted": 1.1151578727543516
+      },
+      {
+        "snapshot_id": "SHP0221-2",
+        "shipment_id": "SHP0221",
+        "voyage_id": "VG044",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 3.413333333333,
+        "predicted": 4.74591179796338
+      },
+      {
+        "snapshot_id": "SHP0221-3",
+        "shipment_id": "SHP0221",
+        "voyage_id": "VG044",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 3.413333333333,
+        "predicted": 4.365760118735125
+      },
+      {
+        "snapshot_id": "SHP0222-0",
+        "shipment_id": "SHP0222",
+        "voyage_id": "VG045",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 18.569722222222,
+        "predicted": 4.090965290832637
+      },
+      {
+        "snapshot_id": "SHP0222-2",
+        "shipment_id": "SHP0222",
+        "voyage_id": "VG045",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 18.569722222222,
+        "predicted": 4.4231310748749495
+      },
+      {
+        "snapshot_id": "SHP0222-3",
+        "shipment_id": "SHP0222",
+        "voyage_id": "VG045",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 18.569722222222,
+        "predicted": 13.931084317256884
+      },
+      {
+        "snapshot_id": "SHP0223-0",
+        "shipment_id": "SHP0223",
+        "voyage_id": "VG045",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.043055555556,
+        "predicted": 3.8475387147852116
+      },
+      {
+        "snapshot_id": "SHP0223-2",
+        "shipment_id": "SHP0223",
+        "voyage_id": "VG045",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.043055555556,
+        "predicted": 4.975649971174465
+      },
+      {
+        "snapshot_id": "SHP0223-3",
+        "shipment_id": "SHP0223",
+        "voyage_id": "VG045",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.043055555556,
+        "predicted": 2.558574415291251
+      },
+      {
+        "snapshot_id": "SHP0224-0",
+        "shipment_id": "SHP0224",
+        "voyage_id": "VG045",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 12.021111111111,
+        "predicted": 4.306359200940665
+      },
+      {
+        "snapshot_id": "SHP0224-2",
+        "shipment_id": "SHP0224",
+        "voyage_id": "VG045",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 12.021111111111,
+        "predicted": 4.239027740533439
+      },
+      {
+        "snapshot_id": "SHP0224-3",
+        "shipment_id": "SHP0224",
+        "voyage_id": "VG045",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 12.021111111111,
+        "predicted": 7.441911914948892
+      },
+      {
+        "snapshot_id": "SHP0225-0",
+        "shipment_id": "SHP0225",
+        "voyage_id": "VG045",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.220555555556,
+        "predicted": 1.807524198640211
+      },
+      {
+        "snapshot_id": "SHP0225-2",
+        "shipment_id": "SHP0225",
+        "voyage_id": "VG045",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.220555555556,
+        "predicted": 3.218802264522105
+      },
+      {
+        "snapshot_id": "SHP0225-3",
+        "shipment_id": "SHP0225",
+        "voyage_id": "VG045",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -0.220555555556,
+        "predicted": 0.8387180999394268
+      },
+      {
+        "snapshot_id": "SHP0226-0",
+        "shipment_id": "SHP0226",
+        "voyage_id": "VG046",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -4.035277777778,
+        "predicted": 3.3247382162366987
+      },
+      {
+        "snapshot_id": "SHP0226-1",
+        "shipment_id": "SHP0226",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -4.035277777778,
+        "predicted": 1.9493149508111747
+      },
+      {
+        "snapshot_id": "SHP0226-2",
+        "shipment_id": "SHP0226",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -4.035277777778,
+        "predicted": 0.4052182519218407
+      },
+      {
+        "snapshot_id": "SHP0226-3",
+        "shipment_id": "SHP0226",
+        "voyage_id": "VG046",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -4.035277777778,
+        "predicted": -0.7203478439533931
+      },
+      {
+        "snapshot_id": "SHP0227-0",
+        "shipment_id": "SHP0227",
+        "voyage_id": "VG046",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 1.985833333333,
+        "predicted": 3.4236610318855014
+      },
+      {
+        "snapshot_id": "SHP0227-1",
+        "shipment_id": "SHP0227",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 1.985833333333,
+        "predicted": 1.9186817846952886
+      },
+      {
+        "snapshot_id": "SHP0227-2",
+        "shipment_id": "SHP0227",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 1.985833333333,
+        "predicted": 0.27573837577662397
+      },
+      {
+        "snapshot_id": "SHP0227-3",
+        "shipment_id": "SHP0227",
+        "voyage_id": "VG046",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 1.985833333333,
+        "predicted": -0.8106567569532043
+      },
+      {
+        "snapshot_id": "SHP0228-0",
+        "shipment_id": "SHP0228",
+        "voyage_id": "VG046",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 4.154722222222,
+        "predicted": 3.4359390006355004
+      },
+      {
+        "snapshot_id": "SHP0228-1",
+        "shipment_id": "SHP0228",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 4.154722222222,
+        "predicted": 1.4514540418410689
+      },
+      {
+        "snapshot_id": "SHP0228-3",
+        "shipment_id": "SHP0228",
+        "voyage_id": "VG046",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 4.154722222222,
+        "predicted": 4.647027058307066
+      },
+      {
+        "snapshot_id": "SHP0229-0",
+        "shipment_id": "SHP0229",
+        "voyage_id": "VG046",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -1.948055555556,
+        "predicted": 3.436011726329945
+      },
+      {
+        "snapshot_id": "SHP0229-1",
+        "shipment_id": "SHP0229",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -1.948055555556,
+        "predicted": 1.4599501066558849
+      },
+      {
+        "snapshot_id": "SHP0229-2",
+        "shipment_id": "SHP0229",
+        "voyage_id": "VG046",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -1.948055555556,
+        "predicted": 1.8979522115565601
+      },
+      {
+        "snapshot_id": "SHP0229-3",
+        "shipment_id": "SHP0229",
+        "voyage_id": "VG046",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -1.948055555556,
+        "predicted": 0.36153705876739034
+      },
+      {
+        "snapshot_id": "SHP0230-0",
+        "shipment_id": "SHP0230",
+        "voyage_id": "VG047",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 3.903333333333,
+        "predicted": 1.9401548789753753
+      },
+      {
+        "snapshot_id": "SHP0230-1",
+        "shipment_id": "SHP0230",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 3.903333333333,
+        "predicted": -0.18726986579822733
+      },
+      {
+        "snapshot_id": "SHP0230-2",
+        "shipment_id": "SHP0230",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 3.903333333333,
+        "predicted": 3.864652728283937
+      },
+      {
+        "snapshot_id": "SHP0230-3",
+        "shipment_id": "SHP0230",
+        "voyage_id": "VG047",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 3.903333333333,
+        "predicted": 4.7906571837500715
+      },
+      {
+        "snapshot_id": "SHP0231-0",
+        "shipment_id": "SHP0231",
+        "voyage_id": "VG047",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 6.349166666667,
+        "predicted": 2.6990460615321763
+      },
+      {
+        "snapshot_id": "SHP0231-1",
+        "shipment_id": "SHP0231",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 6.349166666667,
+        "predicted": 0.571758387565184
+      },
+      {
+        "snapshot_id": "SHP0231-2",
+        "shipment_id": "SHP0231",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 6.349166666667,
+        "predicted": 3.8220382754659488
+      },
+      {
+        "snapshot_id": "SHP0231-3",
+        "shipment_id": "SHP0231",
+        "voyage_id": "VG047",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 6.349166666667,
+        "predicted": 3.2430445832439796
+      },
+      {
+        "snapshot_id": "SHP0232-0",
+        "shipment_id": "SHP0232",
+        "voyage_id": "VG047",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 1.785277777778,
+        "predicted": 1.9401548789753753
+      },
+      {
+        "snapshot_id": "SHP0232-1",
+        "shipment_id": "SHP0232",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 1.785277777778,
+        "predicted": -0.18726986579822733
+      },
+      {
+        "snapshot_id": "SHP0232-2",
+        "shipment_id": "SHP0232",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 1.785277777778,
+        "predicted": 3.0123144172012024
+      },
+      {
+        "snapshot_id": "SHP0232-3",
+        "shipment_id": "SHP0232",
+        "voyage_id": "VG047",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 1.785277777778,
+        "predicted": 3.2784785344356897
+      },
+      {
+        "snapshot_id": "SHP0233-0",
+        "shipment_id": "SHP0233",
+        "voyage_id": "VG047",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 2.446666666667,
+        "predicted": 2.236053240968317
+      },
+      {
+        "snapshot_id": "SHP0233-1",
+        "shipment_id": "SHP0233",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 2.446666666667,
+        "predicted": 0.014490127970218094
+      },
+      {
+        "snapshot_id": "SHP0233-2",
+        "shipment_id": "SHP0233",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 2.446666666667,
+        "predicted": 3.134955474602835
+      },
+      {
+        "snapshot_id": "SHP0233-3",
+        "shipment_id": "SHP0233",
+        "voyage_id": "VG047",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 2.446666666667,
+        "predicted": 3.1629863305493093
+      },
+      {
+        "snapshot_id": "SHP0234-0",
+        "shipment_id": "SHP0234",
+        "voyage_id": "VG047",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -3.179722222222,
+        "predicted": 2.236053240968317
+      },
+      {
+        "snapshot_id": "SHP0234-1",
+        "shipment_id": "SHP0234",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -3.179722222222,
+        "predicted": -0.052236741119616195
+      },
+      {
+        "snapshot_id": "SHP0234-2",
+        "shipment_id": "SHP0234",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -3.179722222222,
+        "predicted": 3.1006648039120215
+      },
+      {
+        "snapshot_id": "SHP0234-3",
+        "shipment_id": "SHP0234",
+        "voyage_id": "VG047",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -3.179722222222,
+        "predicted": -0.5773627402924838
+      },
+      {
+        "snapshot_id": "SHP0235-0",
+        "shipment_id": "SHP0235",
+        "voyage_id": "VG047",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.325277777778,
+        "predicted": 2.8722932341512237
+      },
+      {
+        "snapshot_id": "SHP0235-1",
+        "shipment_id": "SHP0235",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.325277777778,
+        "predicted": 0.5090469292318538
+      },
+      {
+        "snapshot_id": "SHP0235-2",
+        "shipment_id": "SHP0235",
+        "voyage_id": "VG047",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.325277777778,
+        "predicted": 3.4136997995194105
+      },
+      {
+        "snapshot_id": "SHP0235-3",
+        "shipment_id": "SHP0235",
+        "voyage_id": "VG047",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.325277777778,
+        "predicted": 2.492718597586207
+      },
+      {
+        "snapshot_id": "SHP0236-0",
+        "shipment_id": "SHP0236",
+        "voyage_id": "VG048",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -0.231666666667,
+        "predicted": -0.16386792269727077
+      },
+      {
+        "snapshot_id": "SHP0236-2",
+        "shipment_id": "SHP0236",
+        "voyage_id": "VG048",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -0.231666666667,
+        "predicted": 2.9913853267701076
+      },
+      {
+        "snapshot_id": "SHP0236-3",
+        "shipment_id": "SHP0236",
+        "voyage_id": "VG048",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -0.231666666667,
+        "predicted": 0.2784520684660347
+      },
+      {
+        "snapshot_id": "SHP0237-0",
+        "shipment_id": "SHP0237",
+        "voyage_id": "VG048",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 14.541944444444,
+        "predicted": 0.840950264113099
+      },
+      {
+        "snapshot_id": "SHP0237-2",
+        "shipment_id": "SHP0237",
+        "voyage_id": "VG048",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 14.541944444444,
+        "predicted": 6.133144709968662
+      },
+      {
+        "snapshot_id": "SHP0237-3",
+        "shipment_id": "SHP0237",
+        "voyage_id": "VG048",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 14.541944444444,
+        "predicted": 14.733065303365654
+      },
+      {
+        "snapshot_id": "SHP0238-0",
+        "shipment_id": "SHP0238",
+        "voyage_id": "VG048",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 2.845555555556,
+        "predicted": -0.1692215437290187
+      },
+      {
+        "snapshot_id": "SHP0238-3",
+        "shipment_id": "SHP0238",
+        "voyage_id": "VG048",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 2.845555555556,
+        "predicted": 5.385428185693711
+      },
+      {
+        "snapshot_id": "SHP0239-0",
+        "shipment_id": "SHP0239",
+        "voyage_id": "VG048",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.913055555556,
+        "predicted": 0.840950264113099
+      },
+      {
+        "snapshot_id": "SHP0239-2",
+        "shipment_id": "SHP0239",
+        "voyage_id": "VG048",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.913055555556,
+        "predicted": 3.4507626201488724
+      },
+      {
+        "snapshot_id": "SHP0239-3",
+        "shipment_id": "SHP0239",
+        "voyage_id": "VG048",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.913055555556,
+        "predicted": 1.0662840566855767
+      },
+      {
+        "snapshot_id": "SHP0240-0",
+        "shipment_id": "SHP0240",
+        "voyage_id": "VG049",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 1.963333333333,
+        "predicted": 3.39714764886598
+      },
+      {
+        "snapshot_id": "SHP0240-1",
+        "shipment_id": "SHP0240",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 1.963333333333,
+        "predicted": 3.5353684071499787
+      },
+      {
+        "snapshot_id": "SHP0240-2",
+        "shipment_id": "SHP0240",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 1.963333333333,
+        "predicted": 3.630812712775718
+      },
+      {
+        "snapshot_id": "SHP0240-3",
+        "shipment_id": "SHP0240",
+        "voyage_id": "VG049",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 1.963333333333,
+        "predicted": 3.1996561729462347
+      },
+      {
+        "snapshot_id": "SHP0241-0",
+        "shipment_id": "SHP0241",
+        "voyage_id": "VG049",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -3.801666666667,
+        "predicted": 3.7649146110664464
+      },
+      {
+        "snapshot_id": "SHP0241-1",
+        "shipment_id": "SHP0241",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -3.801666666667,
+        "predicted": 4.07453024945651
+      },
+      {
+        "snapshot_id": "SHP0241-2",
+        "shipment_id": "SHP0241",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -3.801666666667,
+        "predicted": 1.2403210457290104
+      },
+      {
+        "snapshot_id": "SHP0241-3",
+        "shipment_id": "SHP0241",
+        "voyage_id": "VG049",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -3.801666666667,
+        "predicted": -0.4457410092864261
+      },
+      {
+        "snapshot_id": "SHP0242-0",
+        "shipment_id": "SHP0242",
+        "voyage_id": "VG049",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.713888888889,
+        "predicted": 3.2031622666476527
+      },
+      {
+        "snapshot_id": "SHP0242-1",
+        "shipment_id": "SHP0242",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.713888888889,
+        "predicted": 4.602727841171333
+      },
+      {
+        "snapshot_id": "SHP0242-2",
+        "shipment_id": "SHP0242",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.713888888889,
+        "predicted": 3.4046115721125387
+      },
+      {
+        "snapshot_id": "SHP0242-3",
+        "shipment_id": "SHP0242",
+        "voyage_id": "VG049",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.713888888889,
+        "predicted": 2.7643449708789882
+      },
+      {
+        "snapshot_id": "SHP0243-0",
+        "shipment_id": "SHP0243",
+        "voyage_id": "VG049",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 3.931944444444,
+        "predicted": 3.2031622666476527
+      },
+      {
+        "snapshot_id": "SHP0243-1",
+        "shipment_id": "SHP0243",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 3.931944444444,
+        "predicted": 4.602727841171333
+      },
+      {
+        "snapshot_id": "SHP0244-0",
+        "shipment_id": "SHP0244",
+        "voyage_id": "VG049",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.428611111111,
+        "predicted": 3.6204821967909044
+      },
+      {
+        "snapshot_id": "SHP0244-1",
+        "shipment_id": "SHP0244",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.428611111111,
+        "predicted": 4.0783336765695175
+      },
+      {
+        "snapshot_id": "SHP0244-2",
+        "shipment_id": "SHP0244",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.428611111111,
+        "predicted": 3.182764678868562
+      },
+      {
+        "snapshot_id": "SHP0244-3",
+        "shipment_id": "SHP0244",
+        "voyage_id": "VG049",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 0.428611111111,
+        "predicted": 3.4476183472293616
+      },
+      {
+        "snapshot_id": "SHP0245-0",
+        "shipment_id": "SHP0245",
+        "voyage_id": "VG049",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 3.966111111111,
+        "predicted": 2.656547098827009
+      },
+      {
+        "snapshot_id": "SHP0245-1",
+        "shipment_id": "SHP0245",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 3.966111111111,
+        "predicted": 3.3318674233419
+      },
+      {
+        "snapshot_id": "SHP0245-2",
+        "shipment_id": "SHP0245",
+        "voyage_id": "VG049",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 3.966111111111,
+        "predicted": 2.7933187207721777
+      },
+      {
+        "snapshot_id": "SHP0245-3",
+        "shipment_id": "SHP0245",
+        "voyage_id": "VG049",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 3.966111111111,
+        "predicted": 1.158831388700316
+      },
+      {
+        "snapshot_id": "SHP0246-0",
+        "shipment_id": "SHP0246",
+        "voyage_id": "VG050",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.980277777778,
+        "predicted": 0.9151404953004472
+      },
+      {
+        "snapshot_id": "SHP0246-1",
+        "shipment_id": "SHP0246",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.980277777778,
+        "predicted": 0.15967134419302764
+      },
+      {
+        "snapshot_id": "SHP0246-2",
+        "shipment_id": "SHP0246",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.980277777778,
+        "predicted": 0.4906451772503982
+      },
+      {
+        "snapshot_id": "SHP0247-0",
+        "shipment_id": "SHP0247",
+        "voyage_id": "VG050",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 16.177222222222,
+        "predicted": 1.2937422324753192
+      },
+      {
+        "snapshot_id": "SHP0247-1",
+        "shipment_id": "SHP0247",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 16.177222222222,
+        "predicted": 0.33532021248319005
+      },
+      {
+        "snapshot_id": "SHP0247-3",
+        "shipment_id": "SHP0247",
+        "voyage_id": "VG050",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 16.177222222222,
+        "predicted": 9.272923661003112
+      },
+      {
+        "snapshot_id": "SHP0248-0",
+        "shipment_id": "SHP0248",
+        "voyage_id": "VG050",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": -3.058888888889,
+        "predicted": 0.7468172897519763
+      },
+      {
+        "snapshot_id": "SHP0248-1",
+        "shipment_id": "SHP0248",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": -3.058888888889,
+        "predicted": 0.0025734854865393842
+      },
+      {
+        "snapshot_id": "SHP0248-2",
+        "shipment_id": "SHP0248",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": -3.058888888889,
+        "predicted": 0.14581194945610404
+      },
+      {
+        "snapshot_id": "SHP0248-3",
+        "shipment_id": "SHP0248",
+        "voyage_id": "VG050",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": -3.058888888889,
+        "predicted": 0.1376017963652734
+      },
+      {
+        "snapshot_id": "SHP0249-0",
+        "shipment_id": "SHP0249",
+        "voyage_id": "VG050",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 0.549444444444,
+        "predicted": 1.8541954074724918
+      },
+      {
+        "snapshot_id": "SHP0249-1",
+        "shipment_id": "SHP0249",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 0.549444444444,
+        "predicted": 0.6364043933218104
+      },
+      {
+        "snapshot_id": "SHP0249-2",
+        "shipment_id": "SHP0249",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 0.549444444444,
+        "predicted": 1.274456994318077
+      },
+      {
+        "snapshot_id": "SHP0250-0",
+        "shipment_id": "SHP0250",
+        "voyage_id": "VG050",
+        "snapshot_stage": "origin_departure",
+        "target_final_delay_hours": 9.568888888889,
+        "predicted": 0.7821338617216699
+      },
+      {
+        "snapshot_id": "SHP0250-1",
+        "shipment_id": "SHP0250",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_arrival",
+        "target_final_delay_hours": 9.568888888889,
+        "predicted": -0.00358161517577803
+      },
+      {
+        "snapshot_id": "SHP0250-2",
+        "shipment_id": "SHP0250",
+        "voyage_id": "VG050",
+        "snapshot_stage": "port_processing_complete",
+        "target_final_delay_hours": 9.568888888889,
+        "predicted": 0.15749568332180852
+      },
+      {
+        "snapshot_id": "SHP0250-3",
+        "shipment_id": "SHP0250",
+        "voyage_id": "VG050",
+        "snapshot_stage": "customs_clearance_complete",
+        "target_final_delay_hours": 9.568888888889,
+        "predicted": 10.655771310569882
+      }
+    ]
+  }
+}

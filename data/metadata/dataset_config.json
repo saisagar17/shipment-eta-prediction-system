@@ -1,0 +1,113 @@
+{
+  "seed": 42,
+  "start_utc": "2025-01-06T06:00:00Z",
+  "rounds": 10,
+  "cycle_days": 22,
+  "ocean_variation": 0.07,
+  "departure_probabilities": [
+    0.7,
+    0.2,
+    0.1
+  ],
+  "vessels_per_route": 2,
+  "port_buffer": 2.0,
+  "customs_buffer": 1.5,
+  "inland_buffer": 1.5,
+  "congestion_linear": 2.0,
+  "congestion_quadratic": 9.0,
+  "inspection_probability": 0.14,
+  "missing_event_rate": 0.1,
+  "missing_weather_rate": 0.05,
+  "missing_congestion_rate": 0.1,
+  "max_event_lag_minutes": 20,
+  "significant_delay_hours": 6.0,
+  "routes": [
+    {
+      "route_id": "R01",
+      "origin": "Chennai",
+      "port": "Mumbai",
+      "destination": "Pune",
+      "ocean": 72,
+      "port_base": 6,
+      "customs_base": 3,
+      "inland_base": 5,
+      "weather_scale": 6
+    },
+    {
+      "route_id": "R02",
+      "origin": "Singapore",
+      "port": "Chennai",
+      "destination": "Bengaluru",
+      "ocean": 120,
+      "port_base": 7,
+      "customs_base": 4,
+      "inland_base": 8,
+      "weather_scale": 9
+    },
+    {
+      "route_id": "R03",
+      "origin": "Kochi",
+      "port": "Mumbai",
+      "destination": "Nashik",
+      "ocean": 48,
+      "port_base": 6,
+      "customs_base": 3,
+      "inland_base": 6,
+      "weather_scale": 5
+    },
+    {
+      "route_id": "R04",
+      "origin": "Dubai",
+      "port": "Mumbai",
+      "destination": "Pune",
+      "ocean": 168,
+      "port_base": 8,
+      "customs_base": 5,
+      "inland_base": 5,
+      "weather_scale": 12
+    },
+    {
+      "route_id": "R05",
+      "origin": "Colombo",
+      "port": "Chennai",
+      "destination": "Hyderabad",
+      "ocean": 48,
+      "port_base": 7,
+      "customs_base": 4,
+      "inland_base": 13,
+      "weather_scale": 4
+    }
+  ],
+  "cargo_extra_hours_port_customs": {
+    "general_goods": [
+      0,
+      0
+    ],
+    "electronics": [
+      1,
+      1.5
+    ],
+    "automotive_parts": [
+      1.5,
+      0.5
+    ],
+    "industrial_equipment": [
+      3,
+      2
+    ]
+  },
+  "stages": [
+    "origin_departure",
+    "port_arrival",
+    "port_processing_complete",
+    "customs_clearance_complete",
+    "final_delivery"
+  ],
+  "time_zone": "UTC",
+  "time_resolution": "1 second",
+  "train_validation_test_fractions": [
+    0.7,
+    0.15,
+    0.15
+  ]
+}

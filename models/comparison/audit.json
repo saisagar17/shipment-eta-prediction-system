@@ -1,0 +1,89 @@
+{
+  "checks": [
+    "Keys, schemas and route references",
+    "Shared vessel movements and return allowance",
+    "Strictly ordered planned and physical timelines",
+    "Physical interval and signed-delay reconciliation",
+    "Observation masks, reporting clocks and sensor applicability",
+    "All snapshot triggers, features and labels",
+    "Route roster rotation and disjoint voyage groups",
+    "All earlier delivery reports released before each evaluation cutoff"
+  ],
+  "live_version": "rf-611deb2a39",
+  "validation_baselines": {
+    "Scheduled ETA": {
+      "n": 87,
+      "shipments": 25,
+      "voyages": 5,
+      "mae": 8.284747765006388,
+      "rmse": 10.404212020950508,
+      "median": 6.461944444444,
+      "p90": 17.564722222222,
+      "r2": -0.19075445299484217,
+      "bias": -4.1642369093230105,
+      "within_4_pct": 28.735632183908045,
+      "within_6_pct": 44.827586206896555,
+      "within_8_pct": 54.02298850574713
+    },
+    "Current delay": {
+      "n": 87,
+      "shipments": 25,
+      "voyages": 5,
+      "mae": 4.82881226053638,
+      "rmse": 6.465777498304864,
+      "median": 3.6191666666670006,
+      "p90": 11.6566111111104,
+      "r2": 0.540119137046895,
+      "bias": -1.096934865900356,
+      "within_4_pct": 56.32183908045977,
+      "within_6_pct": 73.5632183908046,
+      "within_8_pct": 81.60919540229885
+    },
+    "Route median": {
+      "n": 87,
+      "shipments": 25,
+      "voyages": 5,
+      "mae": 7.835185185185128,
+      "rmse": 9.508963319022241,
+      "median": 6.138611111110999,
+      "p90": 13.883055555554998,
+      "r2": 0.005350265966516221,
+      "bias": -2.433850574712408,
+      "within_4_pct": 32.18390804597701,
+      "within_6_pct": 49.42528735632184,
+      "within_8_pct": 60.91954022988506
+    },
+    "Random Forest": {
+      "n": 87,
+      "shipments": 25,
+      "voyages": 5,
+      "mae": 5.649540843433486,
+      "rmse": 6.978494920603746,
+      "median": 4.952811966376231,
+      "p90": 11.354317953772767,
+      "r2": 0.4642929521201238,
+      "bias": 0.039608302101898224,
+      "within_4_pct": 43.67816091954023,
+      "within_6_pct": 62.06896551724138,
+      "within_8_pct": 75.86206896551724
+    }
+  },
+  "train_snapshots": 665,
+  "train_shipments": 175,
+  "train_voyages": 35,
+  "validation_snapshots": 87,
+  "validation_shipments": 25,
+  "validation_voyages": 5,
+  "inner_fit_rows": 568,
+  "inner_monitor_rows": 97,
+  "monitor_voyages": [
+    "VG031",
+    "VG032",
+    "VG033",
+    "VG034",
+    "VG035"
+  ],
+  "inner_last_fit_label": "2025-05-07T20:26:44+00:00",
+  "first_monitor_start": "2025-05-18T05:06:25+00:00",
+  "missing_anchor_count": 0
+}

@@ -1,0 +1,132 @@
+{
+  "seed": 42,
+  "approved_input_columns": [
+    "snapshot_stage",
+    "completed_stage_count",
+    "route_id",
+    "cargo_type",
+    "final_destination",
+    "planned_duration_hours",
+    "planned_transit_hours",
+    "remaining_planned_hours",
+    "elapsed_hours",
+    "time_since_last_event_hours",
+    "departure_day_of_week",
+    "departure_month",
+    "departure_delay_hours",
+    "port_arrival_delay_hours",
+    "port_processing_delay_hours",
+    "customs_delay_hours",
+    "current_stage_delay_hours",
+    "cumulative_added_delay_hours",
+    "cumulative_recovered_hours",
+    "observed_weather_severity",
+    "observed_congestion_level",
+    "known_port_processing_hours",
+    "known_customs_processing_hours",
+    "actual_transit_hours_so_far",
+    "port_arrival_observed",
+    "port_processing_observed",
+    "customs_observed",
+    "missing_event_count"
+  ],
+  "categorical_inputs": [
+    "snapshot_stage",
+    "route_id",
+    "cargo_type",
+    "final_destination"
+  ],
+  "xgboost": {
+    "objective": "reg:squarederror",
+    "eval_metric": "mae",
+    "tree_method": "hist",
+    "max_depth": 3,
+    "learning_rate": 0.04,
+    "min_child_weight": 5,
+    "reg_lambda": 3.0,
+    "subsample": 1.0,
+    "colsample_bytree": 1.0,
+    "random_state": 42,
+    "n_jobs": 1
+  },
+  "catboost": {
+    "loss_function": "RMSE",
+    "eval_metric": "MAE",
+    "depth": 3,
+    "learning_rate": 0.04,
+    "l2_leaf_reg": 3.0,
+    "random_seed": 42,
+    "thread_count": 1,
+    "task_type": "CPU",
+    "allow_writing_files": false,
+    "verbose": false
+  },
+  "maximum_trees": 240,
+  "early_stopping_patience": 25,
+  "inner_monitor_voyages": [
+    "VG031",
+    "VG032",
+    "VG033",
+    "VG034",
+    "VG035"
+  ],
+  "libraries": {
+    "scikit-learn": "1.4.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "joblib": "1.4.2",
+    "catboost": "1.2.8",
+    "xgboost": "2.1.4"
+  },
+  "current_delay_fallback_hours": 0,
+  "candidates": {
+    "E0": {
+      "name": "Current-delay persistence",
+      "family": "persistence",
+      "target": "baseline"
+    },
+    "E1": {
+      "name": "Random Forest",
+      "family": "forest",
+      "target": "direct"
+    },
+    "E2": {
+      "name": "XGBoost direct",
+      "family": "xgboost",
+      "target": "direct"
+    },
+    "E3": {
+      "name": "XGBoost residual",
+      "family": "xgboost",
+      "target": "residual"
+    },
+    "E4": {
+      "name": "CatBoost residual",
+      "family": "catboost",
+      "target": "residual"
+    },
+    "E5": {
+      "name": "CatBoost direct",
+      "family": "catboost",
+      "target": "direct"
+    }
+  },
+  "fitted_tree_counts": {
+    "E2": 107,
+    "E3": 24,
+    "E4": 57,
+    "E5": 147
+  },
+  "data_sha256": {
+    "data/ground_truth/ground_truth_milestones.csv": "9aaf2ce04655cbb758f32c584ad394620dc86f1010e66a7490208854f5a1217a",
+    "data/metadata/data_dictionary.csv": "d074ad67d4d8c83749974d446d433ede01d8e4bbf996eff67aa972fc6f0081ed",
+    "data/metadata/dataset_config.json": "fafeac1e05b9194482096a0eeb71ab73e27c49fe92dacf58745bfb280f2a5bd0",
+    "data/metadata/feature_schema.json": "bf5338e1330a1166b6af0a8d9b4a6fcec38073a874642567e9c5006d60179d8b",
+    "data/processed/prediction_snapshots.csv": "f49e23adaec02a158d09fa94a94273479cb328b2205598c95b5f36775b9e6690",
+    "data/processed/split_manifest.csv": "e16e309821eb76220ccae44ced0f2bdba93c18fc92e815c11fd891904a94a8c7",
+    "data/raw/milestones.csv": "1a8e9e9a71c233d7e89f7e943899a0505a5ccd5e3d2a0bd52d2d8ef41e1c39b3",
+    "data/raw/port_call_measurements.csv": "79df4cd88da6c1c09436f09d574d0d16815dc66bc4f5a1b7cff47395a30ed50f",
+    "data/raw/shipments.csv": "b34c200f3922af7d44bdc18b6aff68acd32145e2bb514917c9b03d05cffc22cb",
+    "data/raw/vessel_voyages.csv": "f28e2932f651d69f383773828f2dc87a3b073c882c936f62ca07fd33d543cb3f"
+  }
+}

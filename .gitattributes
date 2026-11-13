@@ -1,0 +1,9 @@
+* text=auto eol=lf
+# Persist the exact bytes used by the model signatures and reproducibility checks.
+/data/** -text
+/models/** -text
+/src/ml/tuning.py -text
+/reports/dataset_validation.md -text
+*.pdf binary
+*.png binary
+*.joblib binary

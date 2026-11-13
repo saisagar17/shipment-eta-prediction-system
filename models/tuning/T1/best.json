@@ -1,0 +1,226 @@
+{
+  "key": "T1",
+  "name": "Tuned XGBoost residual",
+  "target": "residual",
+  "seed": 42,
+  "trials": 100,
+  "objective": "Pooled forward-fold snapshot MAE (hours)",
+  "best_trial": 61,
+  "best_cv_mae": 3.44552115513081,
+  "search_params": {
+    "n_estimators": 240,
+    "learning_rate": 0.11664079924990797,
+    "max_depth": 5,
+    "subsample": 0.7660362686569792,
+    "min_child_weight": 6,
+    "reg_lambda": 2.7639851366011627,
+    "reg_alpha": 0.02847424501981825,
+    "colsample_bytree": 0.9610665245458234
+  },
+  "refit_params": {
+    "n_estimators": 17,
+    "learning_rate": 0.11664079924990797,
+    "max_depth": 5,
+    "subsample": 0.7660362686569792,
+    "min_child_weight": 6,
+    "reg_lambda": 2.7639851366011627,
+    "reg_alpha": 0.02847424501981825,
+    "colsample_bytree": 0.9610665245458234
+  },
+  "fold_tree_counts": [
+    1,
+    17,
+    42
+  ],
+  "fold_mae": [
+    3.736764991977773,
+    3.4237717513916133,
+    3.181583308272688
+  ],
+  "fold_snapshot_counts": [
+    95,
+    95,
+    97
+  ],
+  "folds": [
+    {
+      "fit": [
+        "VG001",
+        "VG002",
+        "VG003",
+        "VG004",
+        "VG005",
+        "VG006",
+        "VG007",
+        "VG008",
+        "VG009",
+        "VG010",
+        "VG011",
+        "VG012",
+        "VG013",
+        "VG014",
+        "VG015"
+      ],
+      "monitor": [
+        "VG016",
+        "VG017",
+        "VG018",
+        "VG019",
+        "VG020"
+      ],
+      "score": [
+        "VG021",
+        "VG022",
+        "VG023",
+        "VG024",
+        "VG025"
+      ],
+      "fit_end": "2025-02-28T16:43:11+00:00",
+      "monitor_start": "2025-03-13T06:00:00+00:00",
+      "refit_end": "2025-03-23T23:24:02+00:00",
+      "score_start": "2025-04-04T06:00:00+00:00"
+    },
+    {
+      "fit": [
+        "VG001",
+        "VG002",
+        "VG003",
+        "VG004",
+        "VG005",
+        "VG006",
+        "VG007",
+        "VG008",
+        "VG009",
+        "VG010",
+        "VG011",
+        "VG012",
+        "VG013",
+        "VG014",
+        "VG015",
+        "VG016",
+        "VG017",
+        "VG018",
+        "VG019",
+        "VG020"
+      ],
+      "monitor": [
+        "VG021",
+        "VG022",
+        "VG023",
+        "VG024",
+        "VG025"
+      ],
+      "score": [
+        "VG026",
+        "VG027",
+        "VG028",
+        "VG029",
+        "VG030"
+      ],
+      "fit_end": "2025-03-23T23:24:02+00:00",
+      "monitor_start": "2025-04-04T06:00:00+00:00",
+      "refit_end": "2025-04-13T04:34:14+00:00",
+      "score_start": "2025-04-26T05:37:55+00:00"
+    },
+    {
+      "fit": [
+        "VG001",
+        "VG002",
+        "VG003",
+        "VG004",
+        "VG005",
+        "VG006",
+        "VG007",
+        "VG008",
+        "VG009",
+        "VG010",
+        "VG011",
+        "VG012",
+        "VG013",
+        "VG014",
+        "VG015",
+        "VG016",
+        "VG017",
+        "VG018",
+        "VG019",
+        "VG020",
+        "VG021",
+        "VG022",
+        "VG023",
+        "VG024",
+        "VG025"
+      ],
+      "monitor": [
+        "VG026",
+        "VG027",
+        "VG028",
+        "VG029",
+        "VG030"
+      ],
+      "score": [
+        "VG031",
+        "VG032",
+        "VG033",
+        "VG034",
+        "VG035"
+      ],
+      "fit_end": "2025-04-13T04:34:14+00:00",
+      "monitor_start": "2025-04-26T05:37:55+00:00",
+      "refit_end": "2025-05-07T20:26:44+00:00",
+      "score_start": "2025-05-18T05:06:25+00:00"
+    }
+  ],
+  "feature_columns": [
+    "snapshot_stage",
+    "completed_stage_count",
+    "route_id",
+    "cargo_type",
+    "final_destination",
+    "planned_duration_hours",
+    "planned_transit_hours",
+    "remaining_planned_hours",
+    "elapsed_hours",
+    "time_since_last_event_hours",
+    "departure_day_of_week",
+    "departure_month",
+    "departure_delay_hours",
+    "port_arrival_delay_hours",
+    "port_processing_delay_hours",
+    "customs_delay_hours",
+    "current_stage_delay_hours",
+    "cumulative_added_delay_hours",
+    "cumulative_recovered_hours",
+    "observed_weather_severity",
+    "observed_congestion_level",
+    "known_port_processing_hours",
+    "known_customs_processing_hours",
+    "actual_transit_hours_so_far",
+    "port_arrival_observed",
+    "port_processing_observed",
+    "customs_observed",
+    "missing_event_count"
+  ],
+  "signature": {
+    "data": {
+      "data/ground_truth/ground_truth_milestones.csv": "9aaf2ce04655cbb758f32c584ad394620dc86f1010e66a7490208854f5a1217a",
+      "data/metadata/data_dictionary.csv": "d074ad67d4d8c83749974d446d433ede01d8e4bbf996eff67aa972fc6f0081ed",
+      "data/metadata/dataset_config.json": "fafeac1e05b9194482096a0eeb71ab73e27c49fe92dacf58745bfb280f2a5bd0",
+      "data/metadata/feature_schema.json": "bf5338e1330a1166b6af0a8d9b4a6fcec38073a874642567e9c5006d60179d8b",
+      "data/processed/prediction_snapshots.csv": "f49e23adaec02a158d09fa94a94273479cb328b2205598c95b5f36775b9e6690",
+      "data/processed/split_manifest.csv": "e16e309821eb76220ccae44ced0f2bdba93c18fc92e815c11fd891904a94a8c7",
+      "data/raw/milestones.csv": "1a8e9e9a71c233d7e89f7e943899a0505a5ccd5e3d2a0bd52d2d8ef41e1c39b3",
+      "data/raw/port_call_measurements.csv": "79df4cd88da6c1c09436f09d574d0d16815dc66bc4f5a1b7cff47395a30ed50f",
+      "data/raw/shipments.csv": "b34c200f3922af7d44bdc18b6aff68acd32145e2bb514917c9b03d05cffc22cb",
+      "data/raw/vessel_voyages.csv": "f28e2932f651d69f383773828f2dc87a3b073c882c936f62ca07fd33d543cb3f"
+    },
+    "source": "ea90f535ce9d204b7fb9fc01c0fda39bf4d07f1c2f765b6e971daf1c542c77cd",
+    "libraries": {
+      "scikit-learn": "1.4.2",
+      "xgboost": "2.1.4",
+      "catboost": "1.2.8",
+      "optuna": "4.5.0",
+      "numpy": "1.26.4",
+      "pandas": "2.2.3"
+    }
+  }
+}
